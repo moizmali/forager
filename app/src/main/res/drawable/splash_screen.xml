@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--TODO change the background colour and the logo, make this look crispy-->
+    <item android:drawable="@color/colorPrimary" />
+
+    <item>
+        <bitmap android:src="@drawable/forager_logo"
+            android:gravity="center" />
+
+    </item>
+
+</layer-list>

@@ -9,6 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <activity android:name=".SplashScreen" android:theme="@style/SplashScreenTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".Accessories" />
         <activity android:name=".Community" />
         <activity android:name=".Leaderboard" />
@@ -16,8 +24,7 @@
         <activity android:name=".LoginSignUp" />
         <activity android:name=".MainMenu" />
         <activity android:name=".SignUp" />
-        <activity android:name=".SplashScreen" />
-        <activity android:name=".StartGame"></activity>
+        <activity android:name=".StartGame" />
     </application>
 
 </manifest>

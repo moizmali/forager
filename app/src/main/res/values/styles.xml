@@ -1,8 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <!-- TODO @aishcharya, is this the material theme that you want?-->
-    <style name="AppTheme" parent="android:Theme.Material.Light.NoActionBar">
+    <style name="AppTheme" parent="android:Theme.Material.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>

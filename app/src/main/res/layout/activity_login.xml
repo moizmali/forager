@@ -1,9 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="diaspora.forager.Login">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="150dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textSize="30dp" />
+        <Button
+            android:id="@+id/googleLogin"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Login With Google" />
+        <Button
+            android:id="@+id/facebookLogin"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Login With Facebook" />
+        <Button
+            android:id="@+id/emailLogin"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Login With Email" />
+
+    </LinearLayout>
+
+</android.widget.RelativeLayout>

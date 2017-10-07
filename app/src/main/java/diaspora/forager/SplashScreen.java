@@ -1,13 +1,54 @@
 package diaspora.forager;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class SplashScreen extends AppCompatActivity {
+import java.io.IOException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.net.ssl.HttpsURLConnection;
+
+public class SplashScreen extends Activity {
+
+    private static final Logger logger = Logger.getLogger(SplashScreen.class.getName());
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager =
+                (ConnectivityManager) getSystemService(SplashScreen.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        return (networkInfo != null);
+    }
+
+    private boolean hasActiveInternetConnection() {
+        boolean hasInternetAccess = false;
+        if (isNetworkAvailable()) {
+            try {
+                HttpsURLConnection httpsURLConnection =
+                        (HttpsURLConnection) (new URL("http://clients3.google.com/generate_204")
+                                .openConnection());
+                httpsURLConnection.setRequestProperty("User-Agent", "Android");
+                httpsURLConnection.setRequestProperty("Connection", "Close");
+                httpsURLConnection.setConnectTimeout(1500);
+                httpsURLConnection.connect();
+                return (httpsURLConnection.getResponseCode() == 204 &&
+                        httpsURLConnection.getContentLength() == 0);
+            } catch (IOException e) {
+                // TODO debug this, check whether it is correct.
+                logger.log(Level.SEVERE, "Unable To Check For Internet Connection", e);
+            }
+        } else {
+            // TODO Debug this, see whether it is correct.
+            return false;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

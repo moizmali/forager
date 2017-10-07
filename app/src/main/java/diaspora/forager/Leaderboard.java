@@ -1,9 +1,9 @@
 package diaspora.forager;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
 
-public class Leaderboard extends AppCompatActivity {
+public class Leaderboard extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

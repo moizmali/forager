@@ -1,11 +1,11 @@
 package diaspora.forager;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class SignUp extends AppCompatActivity {
+public class SignUp extends Activity {
 
     private Button googleSignUp;
     private Button facebookSignUp;

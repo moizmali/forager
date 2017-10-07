@@ -38,16 +38,18 @@ public class SplashScreen extends Activity {
                 httpsURLConnection.setRequestProperty("Connection", "Close");
                 httpsURLConnection.setConnectTimeout(1500);
                 httpsURLConnection.connect();
-                return (httpsURLConnection.getResponseCode() == 204 &&
+                hasInternetAccess = (httpsURLConnection.getResponseCode() == 204 &&
                         httpsURLConnection.getContentLength() == 0);
             } catch (IOException e) {
                 // TODO debug this, check whether it is correct.
                 logger.log(Level.SEVERE, "Unable To Check For Internet Connection", e);
             }
-        } else {
-            // TODO Debug this, see whether it is correct.
-            return false;
+            return hasInternetAccess;
         }
+//        else {
+//            // TODO Debug this, see whether it is correct.
+//            return false;
+//        }
     }
 
     @Override

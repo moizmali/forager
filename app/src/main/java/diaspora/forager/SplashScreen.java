@@ -44,12 +44,12 @@ public class SplashScreen extends Activity {
                 // TODO debug this, check whether it is correct.
                 logger.log(Level.SEVERE, "Unable To Check For Internet Connection", e);
             }
-            return hasInternetAccess;
         }
 //        else {
 //            // TODO Debug this, see whether it is correct.
 //            return false;
 //        }
+        return hasInternetAccess;
     }
 
     @Override

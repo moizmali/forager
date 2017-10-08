@@ -7,28 +7,62 @@
     tools:context="diaspora.forager.LoginSignUp">
 
     <LinearLayout
+        android:id="@+id/animsLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_horizontal"
-        android:layout_marginTop="150dp">
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/loginLabel"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="Login/SignUp"
-            android:textSize="30dp"/>
+            android:text="Resume Your Journey"
+            android:visibility="visible"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/loginSuccess"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Welcome back, kinsman."
+            android:textAlignment="center"
+            android:visibility="gone" />
+
         <Button
+            android:id="@+id/login"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:elevation="40dp"
+            android:text="Login" />
+
+        <TextView
+            android:id="@+id/signUpLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Login"
-            android:id="@+id/login"/>
+            android:text="New to the Tribe?"
+            android:textAlignment="center" />
+
         <Button
-            android:layout_width="match_parent"
+            android:id="@+id/signup"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="SignUp"
-            android:id="@+id/signup"/>
+            android:elevation="40dp"
+            android:text="Begin Your Journey" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:text="Forager"
+        android:textSize="30dp" />
 
 </android.widget.RelativeLayout>

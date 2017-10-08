@@ -2,11 +2,12 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--TODO change the background colour and the logo, make this look crispy-->
-    <item android:drawable="@color/colorPrimary" />
+    <item android:drawable="@color/colorSplash" />
 
-    <item>
-        <bitmap android:src="@drawable/forager_logo"
-            android:gravity="center" />
-    </item>
+    <item
+        android:drawable="@drawable/forager_logo"
+        android:gravity="center"
+        android:width="250dp"
+        android:height="250dp" />
 
 </layer-list>

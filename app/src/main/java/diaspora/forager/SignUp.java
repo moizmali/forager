@@ -72,6 +72,7 @@ public class SignUp extends Activity {
                                                 startActivity(intent);
                                                 finish();
                                             } else {
+                                                // TODO this is also if the given account already exists, add a message for that
                                                 new AlertDialog.Builder(SignUp.this).setTitle("Error")
                                                         .setMessage("An Internal Error Occurred When Attempting To Sign Up")
                                                         .setNeutralButton("OK", new DialogInterface.OnClickListener() {

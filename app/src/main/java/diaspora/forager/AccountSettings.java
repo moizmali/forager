@@ -27,7 +27,7 @@ public class AccountSettings extends Activity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO complete
+                // TODO ask whether the user is sure he wants to log out.
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if (user != null) {
                     FirebaseAuth.getInstance().signOut();

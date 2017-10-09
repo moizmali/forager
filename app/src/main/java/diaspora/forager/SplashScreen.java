@@ -55,7 +55,6 @@ public class SplashScreen extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //TODO Check if user is already signed in (if not then send to loginSignUp Page).
         // TODO check whether mobile data/WIFI is connected.
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {

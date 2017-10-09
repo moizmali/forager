@@ -4,50 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="diaspora.forager.MainMenu">
+    tools:context="diaspora.forager.AccountSettings">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Main Menu"
+            android:gravity="center_horizontal"
+            android:text="Account Settings"
             android:textSize="30dp" />
 
         <Button
-            android:id="@+id/leaderboard"
+            android:id="@+id/logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Leader-Board" />
+            android:text="Logout"
+            android:textSize="20dp" />
 
         <Button
-            android:id="@+id/accessories"
+            android:id="@+id/changeEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Accessories" />
+            android:text="Change Email"
+            android:textSize="20dp" />
 
         <Button
-            android:id="@+id/community"
+            android:id="@+id/changePassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Community" />
+            android:text="Change Password"
+            android:textSize="20dp" />
 
         <Button
-            android:id="@+id/startGame"
+            android:id="@+id/deleteAccount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Start Game" />
-
-        <Button
-            android:id="@+id/accountSettings"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Account Settings" />
+            android:text="Delete Account"
+            android:textSize="20dp" />
 
     </LinearLayout>
 

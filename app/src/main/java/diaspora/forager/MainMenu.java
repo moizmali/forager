@@ -12,12 +12,14 @@ public class MainMenu extends Activity {
     private Button accessories;
     private Button community;
     private Button startGame;
+    private Button accountSettings;
 
     private void setComponents() {
         leaderboard = (Button) findViewById(R.id.leaderboard);
         accessories = (Button) findViewById(R.id.accessories);
         community = (Button) findViewById(R.id.community);
         startGame = (Button) findViewById(R.id.startGame);
+        accountSettings = (Button) findViewById(R.id.accountSettings);
     }
 
     private void setOnClickListeners() {
@@ -43,6 +45,12 @@ public class MainMenu extends Activity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainMenu.this, StartGame.class));
+            }
+        });
+        accountSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainMenu.this, AccountSettings.class));
             }
         });
     }

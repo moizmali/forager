@@ -18,6 +18,7 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class SplashScreen extends Activity {
 
+    // TODO learn how to send log messages to firebase
     private static final Logger logger = Logger.getLogger(SplashScreen.class.getName());
 
     private boolean isNetworkAvailable() {

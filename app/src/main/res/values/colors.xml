@@ -3,5 +3,6 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="colorSplash">#4E4F56</color>
+    <!-- TODO I think white is better for this -->
+    <color name="colorSplash"><!--#4E4F56-->#FFFFFF</color>
 </resources>

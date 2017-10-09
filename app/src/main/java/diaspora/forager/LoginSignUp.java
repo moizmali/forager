@@ -1,9 +1,11 @@
 package diaspora.forager;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.transition.AutoTransition;
+import android.transition.Slide;
 import android.transition.Transition;
 import android.transition.TransitionManager;
 import android.view.View;
@@ -63,7 +65,10 @@ public class LoginSignUp extends Activity {
 
             @Override
             public void onTransitionEnd(Transition transition) {
-                startActivity(new Intent(LoginSignUp.this, Login.class));
+                LoginSignUp.this.getWindow().setExitTransition(new Slide());
+                ActivityOptions options=ActivityOptions.makeSceneTransitionAnimation(LoginSignUp.this);
+                startActivity(new Intent(LoginSignUp.this, Login.class),options.toBundle());
+//                startActivity(new Intent(LoginSignUp.this, Login.class));
             }
 
             @Override
@@ -85,5 +90,13 @@ public class LoginSignUp extends Activity {
         setComponents();
         setOnClickListeners();
         setupElements();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        loginLabel.setVisibility(View.VISIBLE);
+        loginSuccess.setVisibility(View.GONE);
     }
 }

@@ -19,7 +19,7 @@
             android:id="@+id/loginLabel"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="Resume Your Journey"
+            android:text="Resume your Journey."
             android:textAlignment="center"
             android:visibility="visible" />
 

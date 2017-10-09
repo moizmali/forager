@@ -5,4 +5,6 @@
     <color name="colorAccent">#FF4081</color>
     <!-- TODO I think white is better for this -->
     <color name="colorSplash"><!--#4E4F56-->#FFFFFF</color>
+    <color name="interfaceText">#01FF61</color>
+    <color name="interfaceButton">#008A6E</color>
 </resources>

@@ -49,7 +49,9 @@ public class LoginSignUp extends Activity {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginSignUp.this, SignUp.class));
+                LoginSignUp.this.getWindow().setExitTransition(new Slide());
+                ActivityOptions options=ActivityOptions.makeSceneTransitionAnimation(LoginSignUp.this);
+                startActivity(new Intent(LoginSignUp.this, SignUp.class),options.toBundle());
             }
         });
     }
@@ -68,7 +70,6 @@ public class LoginSignUp extends Activity {
                 LoginSignUp.this.getWindow().setExitTransition(new Slide());
                 ActivityOptions options=ActivityOptions.makeSceneTransitionAnimation(LoginSignUp.this);
                 startActivity(new Intent(LoginSignUp.this, Login.class),options.toBundle());
-//                startActivity(new Intent(LoginSignUp.this, Login.class));
             }
 
             @Override

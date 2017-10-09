@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/main_menu_backdrop_no_title"
     tools:context="diaspora.forager.LoginSignUp">
 
     <LinearLayout
@@ -11,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="128dp"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
@@ -21,6 +23,7 @@
             android:layout_height="wrap_content"
             android:text="Resume your Journey."
             android:textAlignment="center"
+            android:textColor="@color/interfaceText"
             android:visibility="visible" />
 
         <TextView
@@ -29,13 +32,15 @@
             android:layout_height="wrap_content"
             android:text="Welcome back, kinsman."
             android:textAlignment="center"
+            android:textColor="@color/interfaceText"
             android:visibility="gone" />
 
         <Button
             android:id="@+id/login"
-            android:layout_width="300dp"
+            android:layout_width="246dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
+            android:backgroundTint="@color/interfaceButton"
             android:elevation="40dp"
             android:text="Login" />
 
@@ -44,12 +49,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="New to the Tribe?"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="@color/interfaceText" />
 
         <Button
             android:id="@+id/signup"
-            android:layout_width="300dp"
+            android:layout_width="246dp"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/interfaceButton"
             android:elevation="40dp"
             android:text="Begin Your Journey" />
 
@@ -61,8 +68,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="64dp"
         android:text="Forager"
-        android:textSize="30dp" />
+        android:textColor="@color/interfaceText"
+        android:textSize="35dp" />
 
 </android.widget.RelativeLayout>

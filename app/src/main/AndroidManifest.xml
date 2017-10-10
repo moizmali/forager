@@ -22,12 +22,14 @@
         <activity android:name=".Community" />
         <activity android:name=".Leaderboard" />
         <activity android:name=".Login" />
-        <activity android:name=".LoginSignUp"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".LoginSignUp"
+            android:screenOrientation="portrait" />
         <activity android:name=".MainMenu" />
         <activity android:name=".SignUp" />
         <activity android:name=".StartGame" />
-        <activity android:name=".AccountSettings"></activity>
+        <activity android:name=".AccountSettings" />
+        <activity android:name=".NickName"></activity>
     </application>
 
 </manifest>

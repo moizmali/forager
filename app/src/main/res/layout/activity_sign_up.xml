@@ -22,18 +22,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nick-Name"
-            android:textSize="20dp"
-            android:layout_marginTop="50dp"/>
-        <EditText
-            android:id="@+id/nickName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Nick-Name"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="Email"
             android:textSize="20dp"
             android:layout_marginTop="10dp"/>

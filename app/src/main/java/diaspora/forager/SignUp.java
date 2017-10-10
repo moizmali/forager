@@ -10,11 +10,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.crash.FirebaseCrash;
 
 public class SignUp extends AppCompatActivity {
 
@@ -22,7 +24,6 @@ public class SignUp extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
 
-    private EditText nickName;
     private EditText email;
     private EditText password;
     private EditText retypePassword;
@@ -33,7 +34,6 @@ public class SignUp extends AppCompatActivity {
     private void setComponents() {
         firebaseAuth = FirebaseAuth.getInstance();
 
-        nickName = (EditText) findViewById(R.id.nickName);
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
         retypePassword = (EditText) findViewById(R.id.retypePassword);
@@ -44,22 +44,19 @@ public class SignUp extends AppCompatActivity {
 
     private void setOnClickListeners() {
         signUp.setOnClickListener(new View.OnClickListener() {
-            // TODO make sure this is only clickable once
             @Override
             public void onClick(View v) {
-                // TODO test this to see if it works.
+                // Does not let the user click the sign in button multiple times
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 3000) {
                     return;
                 }
                 mLastClickTime = SystemClock.elapsedRealtime();
 
-                // TODO complete
-                String nickNameStr = nickName.getText().toString();
                 String emailStr = email.getText().toString();
                 String passwordStr = password.getText().toString();
                 String retypePasswordStr = retypePassword.getText().toString();
 
-                if (!nickNameStr.isEmpty() && !emailStr.isEmpty() && !passwordStr.isEmpty() && !retypePasswordStr.isEmpty()) {
+                if (!emailStr.isEmpty() && !passwordStr.isEmpty() && !retypePasswordStr.isEmpty()) {
                     if (passwordStr.equals(retypePasswordStr)) {
                         if (passwordStr.length() >= 6) {
                             firebaseAuth.createUserWithEmailAndPassword(emailStr, passwordStr)
@@ -67,14 +64,15 @@ public class SignUp extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<AuthResult> task) {
                                             if (task.isSuccessful()) {
+                                                Toast.makeText(SignUp.this, "Account Successfully Created", Toast.LENGTH_LONG).show();
+                                                // TODO get the nickname;
                                                 Intent intent = new Intent(SignUp.this, MainMenu.class);
                                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                                                 startActivity(intent);
                                                 finish();
                                             } else {
-                                                // TODO this is also if the given account already exists, add a message for that
-                                                new AlertDialog.Builder(SignUp.this).setTitle("Error")
-                                                        .setMessage("An Internal Error Occurred When Attempting To Sign Up")
+                                                new AlertDialog.Builder(SignUp.this).setTitle("Account Taken")
+                                                        .setMessage("The following account already exists, please enter another email address")
                                                         .setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                                             @Override
                                                             public void onClick(DialogInterface dialog, int which) {
@@ -82,6 +80,7 @@ public class SignUp extends AppCompatActivity {
                                                             }
                                                         })
                                                         .show();
+                                                FirebaseCrash.log("User attempting to create an account that already exists");
                                             }
                                         }
                                     });
@@ -123,7 +122,6 @@ public class SignUp extends AppCompatActivity {
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nickName.setText(null);
                 email.setText(null);
                 password.setText(null);
                 retypePassword.setText(null);

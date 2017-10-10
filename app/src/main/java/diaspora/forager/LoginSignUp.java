@@ -53,7 +53,7 @@ public class LoginSignUp extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginSignUp.this.getWindow().setExitTransition(new Slide(Gravity.RIGHT));
+                LoginSignUp.this.getWindow().setExitTransition(new Slide(Gravity.RIGHT).setDuration(800));
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LoginSignUp.this);
                 startActivity(new Intent(LoginSignUp.this, Login.class), options.toBundle());
             }
@@ -61,7 +61,7 @@ public class LoginSignUp extends AppCompatActivity {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginSignUp.this.getWindow().setExitTransition(new Slide(Gravity.LEFT));
+                LoginSignUp.this.getWindow().setExitTransition(new Slide(Gravity.LEFT).setDuration(800));
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LoginSignUp.this);
                 startActivity(new Intent(LoginSignUp.this, SignUp.class), options.toBundle());
             }

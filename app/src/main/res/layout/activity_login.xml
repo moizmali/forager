@@ -1,58 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/main_menu_backdrop_no_title"
     tools:context="diaspora.forager.Login">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical">
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center_horizontal"
+        android:text="Login"
+        android:textColor="@color/interfaceText"
+        android:textSize="30dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1"
+        app:layout_constraintHorizontal_bias="0.502" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="Login"
-            android:textSize="30dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:textColor="@color/interfaceText"
+        android:textSize="25dp"
+        tools:layout_conversion_absoluteHeight="30dp"
+        tools:layout_conversion_absoluteWidth="63dp"
+        tools:layout_conversion_absoluteX="0dp"
+        tools:layout_conversion_absoluteY="55dp"
+        app:layout_constraintTop_toTopOf="@+id/guideline4"
+        android:layout_marginTop="23dp"
+        android:layout_marginLeft="51dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:id="@+id/textView2" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Email"
-            android:textSize="25dp" />
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="51dp"
+        android:layout_marginTop="0dp"
+        android:backgroundTint="@android:color/white"
+        android:hint="Enter Email Address"
+        android:textColor="@color/interfaceText"
+        android:textColorHint="@color/interfaceText"
+        android:textSize="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        tools:layout_conversion_absoluteHeight="44dp"
+        tools:layout_conversion_absoluteWidth="320dp"
+        tools:layout_conversion_absoluteX="0dp"
+        tools:layout_conversion_absoluteY="86dp" />
 
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Email Address"
-            android:textSize="20dp" />
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="51dp"
+        android:layout_marginTop="25dp"
+        android:text="Password"
+        android:textColor="@color/interfaceText"
+        android:textSize="25dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email"
+        tools:layout_conversion_absoluteHeight="30dp"
+        tools:layout_conversion_absoluteWidth="114dp"
+        tools:layout_conversion_absoluteX="0dp"
+        tools:layout_conversion_absoluteY="130dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Password"
-            android:textSize="25dp" />
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="51dp"
+        android:layout_marginTop="0dp"
+        android:backgroundTint="@android:color/white"
+        android:hint="Enter Password"
+        android:inputType="textPassword"
+        android:textColor="@color/interfaceText"
+        android:textColorHint="@color/interfaceText"
+        android:textSize="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        tools:layout_conversion_absoluteHeight="44dp"
+        tools:layout_conversion_absoluteWidth="320dp"
+        tools:layout_conversion_absoluteX="0dp"
+        tools:layout_conversion_absoluteY="161dp" />
 
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Password"
-            android:inputType="textPassword"
-            android:textSize="20dp" />
+    <Button
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="67dp"
+        android:background="@color/interfaceButton"
+        android:text="Login"
+        android:textSize="25dp"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        tools:layout_conversion_absoluteHeight="50dp"
+        tools:layout_conversion_absoluteWidth="320dp"
+        tools:layout_conversion_absoluteX="0dp"
+        tools:layout_conversion_absoluteY="206dp" />
 
-        <Button
-            android:id="@+id/login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Login"
-            android:textSize="25dp" />
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.09823183"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="65dp" />
 
-    </LinearLayout>
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline4"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.29805997"
+        tools:layout_editor_absoluteY="196dp"
+        tools:layout_editor_absoluteX="0dp" />
 
-</android.widget.RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

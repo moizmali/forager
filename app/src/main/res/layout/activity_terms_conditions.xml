@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/main_menu_backdrop_no_title"
     tools:context="diaspora.forager.TermsConditions">
 
 </android.support.constraint.ConstraintLayout>

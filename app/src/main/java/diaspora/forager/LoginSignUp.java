@@ -32,11 +32,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.crash.FirebaseCrash;
 
 public class LoginSignUp extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
-    private GoogleApiClient mGoogleApiClient;
+    private GoogleApiClient googleApiClient;
     private SignInButton googleSignIn;
     private static final int RC_SIGN_IN = 123;
     private long lastClickTime = 0;
@@ -92,7 +93,7 @@ public class LoginSignUp extends AppCompatActivity {
                 }
                 lastClickTime = SystemClock.elapsedRealtime();
                 // Open The Sign In Intent
-                Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+                Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
                 startActivityForResult(signInIntent, RC_SIGN_IN);
             }
         });
@@ -133,26 +134,19 @@ public class LoginSignUp extends AppCompatActivity {
 
     private void setGoogleApiClient() {
         // Configure Google Sign In Options
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
-        mGoogleApiClient = new GoogleApiClient.Builder(LoginSignUp.this)
+        googleApiClient = new GoogleApiClient.Builder(LoginSignUp.this)
                 .enableAutoManage(LoginSignUp.this, new GoogleApiClient.OnConnectionFailedListener() {
                     @Override
                     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-                        new AlertDialog.Builder(LoginSignUp.this).setTitle("Error")
-                                .setMessage("An Error Occurred When Creating GoogleAPIClient")
-                                .setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        // DO NOTHING
-                                    }
-                                })
-                                .show();
+                        Toast.makeText(LoginSignUp.this, "Unable to sign up with google", Toast.LENGTH_LONG).show();
+                        FirebaseCrash.report(new Exception("Unable to sign up with google"));
                     }
                 })
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, googleSignInOptions)
                 .build();
     }
 
@@ -163,9 +157,8 @@ public class LoginSignUp extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            FirebaseUser user = firebaseAuth.getCurrentUser();
                             // TODO get the nickname
+                            Toast.makeText(LoginSignUp.this, "Successfully Logged In", Toast.LENGTH_LONG).show();
                             startActivity(new Intent(LoginSignUp.this, MainMenu.class));
                         } else {
                             // If sign in fails, display a message to the user.
@@ -184,14 +177,13 @@ public class LoginSignUp extends AppCompatActivity {
 
         setComponents();
         setOnClickListeners();
-        setGoogleApiClient();
         setupElements();
+        setGoogleApiClient();
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        // TODO clean and handle errors
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
@@ -200,8 +192,9 @@ public class LoginSignUp extends AppCompatActivity {
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
             } else {
-                // TODO Google Sign In failed, update UI appropriately
-                // ...
+                // Google sign in unsuccessful
+                Toast.makeText(LoginSignUp.this, "Login Unsuccessful", Toast.LENGTH_LONG).show();
+                FirebaseCrash.report(new Exception("An error occurred when attempting to login with google"));
             }
         }
     }

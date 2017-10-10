@@ -26,20 +26,6 @@
             android:textSize="20dp" />
 
         <Button
-            android:id="@+id/changeEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Change Email"
-            android:textSize="20dp" />
-
-        <Button
-            android:id="@+id/changePassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Change Password"
-            android:textSize="20dp" />
-
-        <Button
             android:id="@+id/deleteAccount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

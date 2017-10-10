@@ -60,6 +60,11 @@
             android:elevation="40dp"
             android:text="Begin Your Journey" />
 
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/googleSignIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
     </LinearLayout>
 
     <TextView

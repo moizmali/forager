@@ -1,6 +1,5 @@
 package diaspora.forager;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;

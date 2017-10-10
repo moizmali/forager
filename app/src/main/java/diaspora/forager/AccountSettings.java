@@ -1,6 +1,5 @@
 package diaspora.forager;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,14 +12,10 @@ import com.google.firebase.auth.FirebaseUser;
 public class AccountSettings extends AppCompatActivity {
 
     private Button logout;
-    private Button changeEmail;
-    private Button changePassword;
     private Button deleteAccount;
 
     private void setComponents() {
         logout = (Button) findViewById(R.id.logout);
-        changeEmail = (Button) findViewById(R.id.changeEmail);
-        changePassword = (Button) findViewById(R.id.changePassword);
         deleteAccount = (Button) findViewById(R.id.deleteAccount);
     }
 
@@ -39,18 +34,6 @@ public class AccountSettings extends AppCompatActivity {
                 } else {
                     // TODO send a error message to firebase
                 }
-            }
-        });
-        changeEmail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO complete
-            }
-        });
-        changePassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO complete
             }
         });
         deleteAccount.setOnClickListener(new View.OnClickListener() {

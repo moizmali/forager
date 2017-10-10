@@ -2,8 +2,9 @@ package diaspora.forager;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
-public class StartGame extends Activity {
+public class StartGame extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

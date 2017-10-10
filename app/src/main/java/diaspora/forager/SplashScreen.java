@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -16,7 +17,7 @@ import java.util.logging.Logger;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class SplashScreen extends Activity {
+public class SplashScreen extends AppCompatActivity {
 
     // TODO learn how to send log messages to firebase
     private static final Logger logger = Logger.getLogger(SplashScreen.class.getName());

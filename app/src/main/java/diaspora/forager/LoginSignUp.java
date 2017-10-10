@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.transition.AutoTransition;
 import android.transition.Slide;
 import android.transition.Transition;
@@ -13,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class LoginSignUp extends Activity {
+public class LoginSignUp extends AppCompatActivity {
 
     private ViewGroup animsLayout;
     private ViewGroup loginLayout;

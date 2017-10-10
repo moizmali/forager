@@ -1,19 +1,14 @@
 package diaspora.forager;
 
 import android.app.ActivityOptions;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.transition.AutoTransition;
 import android.transition.Slide;
-import android.transition.Transition;
-import android.transition.TransitionManager;
+import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,7 +25,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.crash.FirebaseCrash;
 
@@ -42,44 +36,32 @@ public class LoginSignUp extends AppCompatActivity {
     private static final int RC_SIGN_IN = 123;
     private long lastClickTime = 0;
 
-    private ViewGroup animsLayout;
-    private ViewGroup loginLayout;
-
     private Button login;
     private TextView loginLabel;
-    private TextView loginSuccess;
     private Button signUp;
-
-    private AutoTransition autoTransition;
 
     private void setComponents() {
         firebaseAuth = FirebaseAuth.getInstance();
         googleSignIn = (SignInButton) findViewById(R.id.googleSignIn);
 
-        animsLayout = (ViewGroup) findViewById(R.id.animsLayout);
-        loginLayout = (ViewGroup) findViewById(R.layout.activity_login);
-
         login = (Button) findViewById(R.id.login);
         loginLabel = (TextView) findViewById(R.id.loginLabel);
-        loginSuccess = (TextView) findViewById(R.id.loginSuccess);
         signUp = (Button) findViewById(R.id.signup);
-
-        autoTransition = new AutoTransition();
     }
 
     private void setOnClickListeners() {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TransitionManager.beginDelayedTransition(animsLayout, autoTransition);
-                loginLabel.setVisibility(View.GONE);
-                loginSuccess.setVisibility(View.VISIBLE);
+                LoginSignUp.this.getWindow().setExitTransition(new Slide(Gravity.RIGHT));
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LoginSignUp.this);
+                startActivity(new Intent(LoginSignUp.this, Login.class), options.toBundle());
             }
         });
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginSignUp.this.getWindow().setExitTransition(new Slide());
+                LoginSignUp.this.getWindow().setExitTransition(new Slide(Gravity.LEFT));
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LoginSignUp.this);
                 startActivity(new Intent(LoginSignUp.this, SignUp.class), options.toBundle());
             }
@@ -95,39 +77,6 @@ public class LoginSignUp extends AppCompatActivity {
                 // Open The Sign In Intent
                 Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
                 startActivityForResult(signInIntent, RC_SIGN_IN);
-            }
-        });
-    }
-
-    private void setupElements() {
-        loginLabel.setVisibility(View.GONE);
-        loginLabel.setVisibility(View.VISIBLE);
-        loginSuccess.setVisibility(View.VISIBLE);
-        loginSuccess.setVisibility(View.GONE);
-
-        autoTransition.setDuration(1000);
-        autoTransition.addListener(new Transition.TransitionListener() {
-            @Override
-            public void onTransitionStart(Transition transition) {
-            }
-
-            @Override
-            public void onTransitionEnd(Transition transition) {
-                LoginSignUp.this.getWindow().setExitTransition(new Slide());
-                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LoginSignUp.this);
-                startActivity(new Intent(LoginSignUp.this, Login.class), options.toBundle());
-            }
-
-            @Override
-            public void onTransitionCancel(Transition transition) {
-            }
-
-            @Override
-            public void onTransitionPause(Transition transition) {
-            }
-
-            @Override
-            public void onTransitionResume(Transition transition) {
             }
         });
     }
@@ -177,7 +126,6 @@ public class LoginSignUp extends AppCompatActivity {
 
         setComponents();
         setOnClickListeners();
-        setupElements();
         setGoogleApiClient();
     }
 
@@ -197,13 +145,5 @@ public class LoginSignUp extends AppCompatActivity {
                 FirebaseCrash.report(new Exception("An error occurred when attempting to login with google"));
             }
         }
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        loginLabel.setVisibility(View.VISIBLE);
-        loginSuccess.setVisibility(View.GONE);
     }
 }

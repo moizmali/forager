@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,61 +9,72 @@
 
     <LinearLayout
         android:id="@+id/animsLayout"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView"
-        android:layout_marginTop="128dp"
         android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline4"
+        app:layout_constraintVertical_bias="0.536"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp">
 
         <TextView
             android:id="@+id/loginLabel"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="Resume your Journey."
+            android:text="Resume the Journey."
             android:textAlignment="center"
             android:textColor="@color/interfaceText"
-            android:visibility="visible" />
-
-        <TextView
-            android:id="@+id/loginSuccess"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:text="Welcome back, kinsman."
-            android:textAlignment="center"
-            android:textColor="@color/interfaceText"
-            android:visibility="gone" />
+            android:visibility="visible"
+            tools:layout_editor_absoluteX="55dp"
+            tools:layout_editor_absoluteY="327dp" />
 
         <Button
             android:id="@+id/login"
-            android:layout_width="246dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:backgroundTint="@color/interfaceButton"
             android:elevation="40dp"
-            android:text="Login" />
+            android:text="Login"
+            tools:layout_editor_absoluteY="344dp"
+            tools:layout_editor_absoluteX="161dp" />
 
         <TextView
             android:id="@+id/signUpLabel"
-            android:layout_width="match_parent"
+            android:layout_width="379dp"
             android:layout_height="wrap_content"
             android:text="New to the Tribe?"
             android:textAlignment="center"
-            android:textColor="@color/interfaceText" />
+            android:textColor="@color/interfaceText"
+            tools:layout_editor_absoluteY="412dp"
+            tools:layout_editor_absoluteX="8dp" />
 
         <Button
             android:id="@+id/signup"
-            android:layout_width="246dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/interfaceButton"
             android:elevation="40dp"
-            android:text="Begin Your Journey" />
+            android:text="Begin Your Journey"
+            tools:layout_editor_absoluteY="429dp"
+            tools:layout_editor_absoluteX="120dp" />
 
         <com.google.android.gms.common.SignInButton
             android:id="@+id/googleSignIn"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteY="477dp"
+            tools:layout_editor_absoluteX="142dp" />
 
     </LinearLayout>
 
@@ -71,11 +82,33 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="64dp"
         android:text="Forager"
         android:textColor="@color/interfaceText"
-        android:textSize="35dp" />
+        android:textSize="35sp"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.502" />
 
-</android.widget.RelativeLayout>
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline2"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.09823183"
+        tools:layout_editor_absoluteY="65dp"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline4"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.29805997"
+        tools:layout_editor_absoluteY="196dp"
+        tools:layout_editor_absoluteX="0dp" />
+
+</android.support.constraint.ConstraintLayout>

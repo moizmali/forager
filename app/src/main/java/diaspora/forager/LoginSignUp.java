@@ -140,9 +140,8 @@ public class LoginSignUp extends AppCompatActivity {
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
             } else {
+                // TODO check this (bug here)
                 // Google sign in unsuccessful
-                Toast.makeText(LoginSignUp.this, "Login Unsuccessful", Toast.LENGTH_LONG).show();
-                FirebaseCrash.report(new Exception("An error occurred when attempting to login with google"));
             }
         }
     }

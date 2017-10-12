@@ -214,7 +214,7 @@ public class CloudDatabaseHandler {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             // Update the android UI
-                            updateUI(dataSnapshot.getValue(Global.class).getDistanceRemaining());
+                            updateUI(dataSnapshot.getValue(Long.class).intValue());
                         }
 
                         @Override
@@ -237,7 +237,7 @@ public class CloudDatabaseHandler {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             // Update the database
-                            updateDatabase(dataSnapshot.getValue(Global.class).getDistanceRemaining() - 1);
+                            updateDatabase(dataSnapshot.getValue(Long.class).intValue() - 1);
                         }
 
                         @Override

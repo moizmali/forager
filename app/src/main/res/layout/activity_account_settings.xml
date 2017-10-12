@@ -69,7 +69,7 @@
         tools:layout_editor_absoluteY="169dp" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/nickName"
         android:layout_width="202dp"
         android:layout_height="40dp"
         android:layout_margin="10dp"
@@ -78,7 +78,7 @@
         android:inputType="textPersonName"
         android:scaleX="1"
         android:scaleY="1"
-        android:text="  Nickname"
+        android:hint="  Loading NickName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -86,7 +86,7 @@
         app:layout_constraintVertical_bias="0.205" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/changeNickName"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="202dp"
         android:layout_height="wrap_content"
@@ -94,7 +94,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintTop_toBottomOf="@+id/nickName"
         app:layout_constraintVertical_bias="0.024" />
 
     <LinearLayout
@@ -107,7 +107,7 @@
         app:layout_constraintHorizontal_bias="0.354"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2"
+        app:layout_constraintTop_toBottomOf="@+id/changeNickName"
         app:layout_constraintVertical_bias="0.141">
 
         <TextView
@@ -133,21 +133,21 @@
         android:id="@+id/mushroomsValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="00"
+        android:text="..."
         android:textColor="@color/colorSplash"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toRightOf="@+id/linearLayout"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2"
+        app:layout_constraintTop_toBottomOf="@+id/changeNickName"
         app:layout_constraintVertical_bias="0.053" />
 
     <TextView
         android:id="@+id/pointsValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="00"
+        android:text="..."
         android:textColor="@color/colorSplash"
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"

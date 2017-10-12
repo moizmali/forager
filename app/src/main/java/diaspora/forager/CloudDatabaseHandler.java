@@ -206,6 +206,22 @@ public class CloudDatabaseHandler {
         }
     }
 
+    private void subtractFromCompletionDistance(DatabaseReference databaseReference, FirebaseUser firebaseUser) {
+            databaseReference.child("completionDistance")
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            // TODO complete
+                            updateDatabase(dataSnapshot.getValue());
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+    }
+
     private void updateUI(Object object) {
         // DO NOTHING, VIRTUAL METHOD
     }

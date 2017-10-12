@@ -11,27 +11,29 @@
         android:id="@+id/animsLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        tools:layout_constraintRight_creator="1"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:weightSum="1"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:layout_constraintVertical_bias="0.536"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp">
+        app:layout_constraintVertical_bias="0.041"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1">
 
         <TextView
             android:id="@+id/loginLabel"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:text="Resume the Journey."
+            android:textSize="17dp"
             android:textAlignment="center"
             android:textColor="@color/interfaceText"
             android:visibility="visible"
@@ -40,34 +42,37 @@
 
         <Button
             android:id="@+id/login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="174dp"
+            android:layout_height="58dp"
             android:layout_marginBottom="20dp"
             android:backgroundTint="@color/interfaceButton"
             android:elevation="40dp"
             android:text="Login"
-            tools:layout_editor_absoluteY="344dp"
-            tools:layout_editor_absoluteX="161dp" />
+            android:textColor="@color/colorSplash"
+            tools:layout_editor_absoluteX="161dp"
+            tools:layout_editor_absoluteY="344dp" />
 
         <TextView
             android:id="@+id/signUpLabel"
             android:layout_width="379dp"
             android:layout_height="wrap_content"
             android:text="New to the Tribe?"
+            android:textSize="17dp"
             android:textAlignment="center"
             android:textColor="@color/interfaceText"
-            tools:layout_editor_absoluteY="412dp"
-            tools:layout_editor_absoluteX="8dp" />
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="412dp" />
 
         <Button
             android:id="@+id/signup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="174dp"
+            android:layout_height="70dp"
+            android:layout_weight="0.52"
             android:backgroundTint="@color/interfaceButton"
             android:elevation="40dp"
             android:text="Begin Your Journey"
-            tools:layout_editor_absoluteY="429dp"
-            tools:layout_editor_absoluteX="120dp" />
+            tools:layout_editor_absoluteX="120dp"
+            tools:layout_editor_absoluteY="429dp" />
 
     </LinearLayout>
 
@@ -78,30 +83,30 @@
         android:text="Forager"
         android:textColor="@color/interfaceText"
         android:textSize="35sp"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.502" />
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
 
     <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/guideline2"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.09823183"
-        tools:layout_editor_absoluteY="65dp"
-        tools:layout_editor_absoluteX="0dp" />
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="65dp" />
 
     <android.support.constraint.Guideline
+        android:id="@+id/guideline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/guideline4"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.29805997"
-        tools:layout_editor_absoluteY="196dp"
-        tools:layout_editor_absoluteX="0dp" />
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="196dp" />
 
 </android.support.constraint.ConstraintLayout>

@@ -69,13 +69,6 @@
             tools:layout_editor_absoluteY="429dp"
             tools:layout_editor_absoluteX="120dp" />
 
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/googleSignIn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:layout_editor_absoluteY="477dp"
-            tools:layout_editor_absoluteX="142dp" />
-
     </LinearLayout>
 
     <TextView

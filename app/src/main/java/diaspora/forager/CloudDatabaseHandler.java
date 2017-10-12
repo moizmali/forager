@@ -23,14 +23,14 @@ public class CloudDatabaseHandler {
     public CloudDatabaseHandler() {
     }
 
-    public static void writeNewUserToDatabase(DatabaseReference databaseReference, FirebaseUser firebaseUser) {
+    public void writeNewUserToDatabase(DatabaseReference databaseReference, FirebaseUser firebaseUser) {
         // TODO if google sign in, check whether user is a new one or not
         User user = new User(firebaseUser.getEmail(), 0, 0);
         databaseReference.child("users")
                 .child(firebaseUser.getUid()).setValue(user);
     }
 
-    public static void updateNickName(DatabaseReference databaseReference, FirebaseUser firebaseUser, String nickName) {
+    public void updateNickName(DatabaseReference databaseReference, FirebaseUser firebaseUser, String nickName) {
         databaseReference.child("users")
                 .child(firebaseUser.getUid())
                 .child("nickName").setValue(nickName);
@@ -52,49 +52,52 @@ public class CloudDatabaseHandler {
 
     }
 
-    public static String getNickName(DatabaseReference databaseReference, FirebaseUser firebaseUser) {
+    public String getNickName(DatabaseReference databaseReference, FirebaseUser firebaseUser) {
+        final String[] result = new String[1];
         databaseReference.child("users")
                 .child(firebaseUser.getUid())
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        initNickName(dataSnapshot);
+                        result[0] = dataSnapshot.getValue(User.class).getNickName();
                     }
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
                         FirebaseCrash.log("OnCancelled Method invoked when accessing the getNickName Method");
+                        System.out.println("OnCancelled Method invoked when accessing the getNickName Method");
                     }
                 });
-        System.out.println("The NickName is " + nickName);
-        return nickName;
+        return result[0];
     }
 
-    public static int getNumberOfMushrooms(DatabaseReference databaseReference, FirebaseUser firebaseUser) {
+    public int getNumberOfMushrooms(DatabaseReference databaseReference, FirebaseUser firebaseUser) {
+        final int[] result = new int[1];
         databaseReference.child("users")
                 .child(firebaseUser.getUid())
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        initNumberOfMushrooms(dataSnapshot);
+                        result[0] = dataSnapshot.getValue(User.class).getNumberOfMushrooms();
                     }
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
                         FirebaseCrash.log("OnCancelled Method invoked when accessing the getNumberOfMushrooms Method");
+                        System.out.println("OnCancelled Method invoked when accessing the getNumberOfMushrooms Method");
                     }
                 });
-        System.out.println("The number of mushrooms is " + numberOfMushrooms);
-        return numberOfMushrooms;
+        return result[0];
     }
 
-    public static int getNumberOfPoints(DatabaseReference databaseReference, FirebaseUser firebaseUser) {
+    public int getNumberOfPoints(DatabaseReference databaseReference, FirebaseUser firebaseUser) {
+        final int[] result = new int[1];
         databaseReference.child("users")
                 .child(firebaseUser.getUid())
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        initNumberOfPoints(dataSnapshot);
+                        result[0] = dataSnapshot.getValue(User.class).getNumberOfPoints();
                     }
 
                     @Override
@@ -102,26 +105,7 @@ public class CloudDatabaseHandler {
                         FirebaseCrash.log("OnCancelled Method invoked when accessing the getNumberOfPoints Method");
                     }
                 });
-        System.out.println("The number of points is " + numberOfPoints);
-        return numberOfPoints;
-    }
-
-    private static String nickName = "Hello";
-    private static void initNickName(DataSnapshot dataSnapshot) {
-        User user = dataSnapshot.getValue(User.class);
-        nickName = user.getNickName();
-    }
-
-    private static int numberOfMushrooms = 5;
-    private static void initNumberOfMushrooms(DataSnapshot dataSnapshot) {
-        User user = dataSnapshot.getValue(User.class);
-        numberOfMushrooms = user.getNumberOfMushrooms();
-    }
-
-    private static int numberOfPoints = 5;
-    private static void initNumberOfPoints(DataSnapshot dataSnapshot) {
-        User user = dataSnapshot.getValue(User.class);
-        numberOfPoints = user.getNumberOfPoints();
+        return result[0];
     }
 
 }

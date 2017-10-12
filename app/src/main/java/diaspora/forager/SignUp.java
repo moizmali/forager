@@ -16,11 +16,17 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.crash.FirebaseCrash;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class SignUp extends AppCompatActivity {
+
+    private static final Logger logger =  Logger.getLogger(SignUp.class.getName());
 
     private long mLastClickTime = 0;
 
@@ -131,13 +137,7 @@ public class SignUp extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            CloudDatabaseHandler.writeNewUserToDatabase(databaseReference, firebaseAuth.getCurrentUser());
-                            // TODO testing CloudDatabaseHandler methods
-                            CloudDatabaseHandler.updateNickName(databaseReference, firebaseAuth.getCurrentUser(), "Nick Name Is Updated");
-                            CloudDatabaseHandler.getNickName(databaseReference, firebaseAuth.getCurrentUser());
-                            CloudDatabaseHandler.getNumberOfMushrooms(databaseReference, firebaseAuth.getCurrentUser());
-                            CloudDatabaseHandler.getNumberOfPoints(databaseReference, firebaseAuth.getCurrentUser());
-                            // End of testing
+                            writeNewUserToDatabase(databaseReference, firebaseAuth.getCurrentUser());
                             Toast.makeText(SignUp.this, "Account Successfully Created", Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(SignUp.this, MainMenu.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -158,6 +158,18 @@ public class SignUp extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    public void writeNewUserToDatabase(DatabaseReference databaseReference, FirebaseUser firebaseUser) {
+        // TODO if google sign in, check whether user is a new one or not
+        try {
+            User user = new User(firebaseUser.getEmail(), 0, 0);
+            databaseReference.child("users")
+                    .child(firebaseUser.getUid()).setValue(user);
+        } catch (Throwable e) {
+            logger.log(Level.SEVERE, "Unidentified Exception Occurred", e);
+            FirebaseCrash.report(e);
+        }
     }
 
     @Override

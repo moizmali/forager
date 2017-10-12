@@ -2,9 +2,9 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#ff4081</color>
     <!-- TODO I think white is better for this -->
     <color name="colorSplash"><!--#4E4F56-->#FFFFFF</color>
     <color name="interfaceText">#01ff61</color>
-    <color name="interfaceButton">#008A6E</color>
+    <color name="interfaceButton">#008a6e</color>
 </resources>

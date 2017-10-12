@@ -206,20 +206,50 @@ public class CloudDatabaseHandler {
         }
     }
 
-    private void subtractFromCompletionDistance(DatabaseReference databaseReference, FirebaseUser firebaseUser) {
-            databaseReference.child("completionDistance")
+    private void getDistanceRemaining(DatabaseReference databaseReference, FirebaseUser firebaseUser) {
+        try {
+            databaseReference.child("global")
+                    .child("distanceRemaining")
                     .addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            // TODO complete
-                            updateDatabase(dataSnapshot.getValue());
+                            // Update the android UI
+                            updateUI(dataSnapshot.getValue(Global.class).getDistanceRemaining());
                         }
 
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
-
+                            logger.log(Level.SEVERE, "Database Error Occurred", databaseError.toException());
+                            FirebaseCrash.report(databaseError.toException());
                         }
                     });
+        } catch (Throwable e) {
+            logger.log(Level.SEVERE, "Unidentified Error Occurred", e);
+            FirebaseCrash.report(e);
+        }
+    }
+
+    private void subtractFromDistanceRemaining(DatabaseReference databaseReference, FirebaseUser firebaseUser) {
+        try {
+            databaseReference.child("global")
+                    .child("distanceRemaining")
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            // Update the database
+                            updateDatabase(dataSnapshot.getValue(Global.class).getDistanceRemaining() - 1);
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            logger.log(Level.SEVERE, "Database Error Occurred", databaseError.toException());
+                            FirebaseCrash.report(databaseError.toException());
+                        }
+                    });
+        } catch (Throwable e) {
+            logger.log(Level.SEVERE, "Unidentified Error Occurred", e);
+            FirebaseCrash.report(e);
+        }
     }
 
     private void updateUI(Object object) {

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/rating_screen"
+    android:background="@drawable/rating_screen_demo"
     tools:context="diaspora.forager.StartGame">
 
     <android.support.constraint.Guideline
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/guideline3"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.29" />
+        app:layout_constraintGuide_percent="0.3" />
 
     <TextView
         android:id="@+id/question"
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="-30dp"
         android:text="Loading question..."
         android:textAlignment="center"
         android:textColor="@android:color/white"
@@ -31,22 +31,21 @@
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintTop_creator="1"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp" />
+        android:layout_marginRight="8dp"
+        app:layout_constraintHorizontal_bias="0.0" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.3654224"
-        tools:layout_editor_absoluteY="186dp"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintGuide_percent="0.27" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="0dp"
+        android:layout_width="80dp"
+        android:layout_height="88dp"
+        android:layout_marginBottom="56dp"
         app:srcCompat="@drawable/mushroom_1"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         android:layout_marginRight="8dp"

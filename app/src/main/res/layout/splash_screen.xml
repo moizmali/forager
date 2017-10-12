@@ -3,7 +3,6 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent">
 
-    <!--TODO change the background colour and the logo, make this look crispy-->
     <item android:drawable="@color/colorSplash" />
 
     <item

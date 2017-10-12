@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!-- TODO try to get internet access -->
         <uses-permission android:name="android.permission.INTERNET" />
 
         <activity

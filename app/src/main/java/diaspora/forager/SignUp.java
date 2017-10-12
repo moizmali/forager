@@ -16,7 +16,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.crash.FirebaseCrash;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -52,6 +51,7 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Does not let the user click the sign in button multiple times
+                // TODO get rid of this and add a loading section
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 3000) {
                     return;
                 }
@@ -59,7 +59,7 @@ public class SignUp extends AppCompatActivity {
 
                 final String emailStr = email.getText().toString();
                 final String passwordStr = password.getText().toString();
-                String retypePasswordStr = retypePassword.getText().toString();
+                final String retypePasswordStr = retypePassword.getText().toString();
 
                 if (!emailStr.isEmpty() && !passwordStr.isEmpty() && !retypePasswordStr.isEmpty()) {
                     if (passwordStr.equals(retypePasswordStr)) {
@@ -131,9 +131,14 @@ public class SignUp extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            writeNewUser(FirebaseAuth.getInstance().getCurrentUser());
+                            CloudDatabaseHandler.writeNewUserToDatabase(databaseReference, firebaseAuth.getCurrentUser());
+                            // TODO testing CloudDatabaseHandler methods
+                            CloudDatabaseHandler.updateNickName(databaseReference, firebaseAuth.getCurrentUser(), "Nick Name Is Updated");
+                            CloudDatabaseHandler.getNickName(databaseReference, firebaseAuth.getCurrentUser());
+                            CloudDatabaseHandler.getNumberOfMushrooms(databaseReference, firebaseAuth.getCurrentUser());
+                            CloudDatabaseHandler.getNumberOfPoints(databaseReference, firebaseAuth.getCurrentUser());
+                            // End of testing
                             Toast.makeText(SignUp.this, "Account Successfully Created", Toast.LENGTH_LONG).show();
-                            // TODO get the nickname;
                             Intent intent = new Intent(SignUp.this, MainMenu.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
@@ -148,19 +153,11 @@ public class SignUp extends AppCompatActivity {
                                         }
                                     })
                                     .show();
+                            // TODO bug, this can happen if the user enters an invalid email address as well
                             FirebaseCrash.log("User attempting to create an account that already exists");
                         }
                     }
                 });
-    }
-
-    public void writeNewUser(FirebaseUser firebaseUser) {
-        // TODO handle errors
-        // TODO if google sign in, check whether user is a new one or not
-        String userId = firebaseUser.getUid();
-        String email = firebaseUser.getEmail();
-        User user = new User(email, 0, 0);
-        databaseReference.child("users").child(userId).setValue(user);
     }
 
     @Override

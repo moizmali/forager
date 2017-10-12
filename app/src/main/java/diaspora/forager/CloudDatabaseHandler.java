@@ -7,105 +7,211 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  * Created by Moiz Mansoor Ali on 12/10/2017.
- * TODO complete this helper class
- * This is used as a helper class to make it easier to append the current user's data in the cloud.
  */
 
 public class CloudDatabaseHandler {
 
-    // TODO handle errors
-    // TODO test all these methods in the sign up class
+    // TODO test all these methods
+
+    private static final Logger logger = Logger.getLogger(CloudDatabaseHandler.class.getName());
 
     public CloudDatabaseHandler() {
     }
 
-    public void writeNewUserToDatabase(DatabaseReference databaseReference, FirebaseUser firebaseUser) {
-        // TODO if google sign in, check whether user is a new one or not
-        User user = new User(firebaseUser.getEmail(), 0, 0);
-        databaseReference.child("users")
-                .child(firebaseUser.getUid()).setValue(user);
+    private void writeNewUserToDatabase(DatabaseReference databaseReference, FirebaseUser firebaseUser) {
+        try {
+            User user = new User(firebaseUser.getEmail(), 0, 0);
+            databaseReference.child("users")
+                    .child(firebaseUser.getUid()).setValue(user);
+        } catch (Throwable e) {
+            logger.log(Level.SEVERE, "Unidentified Error Occurred", e);
+            FirebaseCrash.report(e);
+        }
     }
 
-    public void updateNickName(DatabaseReference databaseReference, FirebaseUser firebaseUser, String nickName) {
-        databaseReference.child("users")
-                .child(firebaseUser.getUid())
-                .child("nickName").setValue(nickName);
+    private void updateNickName(DatabaseReference databaseReference, FirebaseUser firebaseUser, String nickName) {
+        try {
+            databaseReference.child("users")
+                    .child(firebaseUser.getUid())
+                    .child("nickName").setValue(nickName);
+        } catch (Throwable e) {
+            logger.log(Level.SEVERE, "Unidentified Error Occurred", e);
+            FirebaseCrash.report(e);
+        }
     }
 
-    public void addMushrooms(DatabaseReference databaseReference, FirebaseUser firebaseUser, int numberOfMushrooms) {
+    private void addMushrooms(DatabaseReference databaseReference, FirebaseUser firebaseUser, final int numberOfMushrooms) {
+        try {
+            databaseReference.child("users")
+                    .child(firebaseUser.getUid())
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            // Update the cloud database
+                            updateDatabase(dataSnapshot.getValue(User.class).getNumberOfMushrooms() + numberOfMushrooms);
+                        }
 
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            logger.log(Level.SEVERE, "Database Error Occurred", databaseError.toException());
+                            FirebaseCrash.report(databaseError.toException());
+                        }
+                    });
+        } catch (Throwable e) {
+            logger.log(Level.SEVERE, "Unidentified Error Occurred", e);
+            FirebaseCrash.report(e);
+        }
     }
 
-    public void addPoints(DatabaseReference databaseReference, FirebaseUser firebaseUser, int numberOfPoints) {
+    private void addPoints(DatabaseReference databaseReference, FirebaseUser firebaseUser, final int numberOfPoints) {
+        try {
+            databaseReference.child("users")
+                    .child(firebaseUser.getUid())
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            // Update the cloud database
+                            updateDatabase(dataSnapshot.getValue(User.class).getNumberOfPoints() + numberOfPoints);
+                        }
 
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            logger.log(Level.SEVERE, "Database Error Occurred", databaseError.toException());
+                            FirebaseCrash.report(databaseError.toException());
+                        }
+                    });
+        } catch (Throwable e) {
+            logger.log(Level.SEVERE, "Unidentified Error Occurred", e);
+            FirebaseCrash.report(e);
+        }
     }
 
-    public void subtractMushrooms(DatabaseReference databaseReference, FirebaseUser firebaseUser, int numberOfMushrooms) {
+    private void subtractMushrooms(DatabaseReference databaseReference, FirebaseUser firebaseUser, final int numberOfMushrooms) {
+        try {
+            databaseReference.child("users")
+                    .child(firebaseUser.getUid())
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            // Update the cloud database
+                            updateDatabase(dataSnapshot.getValue(User.class).getNumberOfMushrooms() - numberOfMushrooms);
+                        }
 
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            logger.log(Level.SEVERE, "Database Error Occurred", databaseError.toException());
+                            FirebaseCrash.report(databaseError.toException());
+                        }
+                    });
+        } catch (Throwable e) {
+            logger.log(Level.SEVERE, "Unidentified Error Occurred", e);
+            FirebaseCrash.report(e);
+        }
     }
 
-    public void subtractPoints(DatabaseReference databaseReference, FirebaseUser firebaseUser, int numberOfPoints) {
+    private void subtractPoints(DatabaseReference databaseReference, FirebaseUser firebaseUser, final int numberOfPoints) {
+        try {
+            databaseReference.child("users")
+                    .child(firebaseUser.getUid())
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            // Update the cloud database
+                            updateDatabase(dataSnapshot.getValue(User.class).getNumberOfPoints() - numberOfPoints);
+                        }
 
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            logger.log(Level.SEVERE, "Database Error Occurred", databaseError.toException());
+                            FirebaseCrash.report(databaseError.toException());
+                        }
+                    });
+        } catch (Throwable e) {
+            logger.log(Level.SEVERE, "Unidentified Error Occurred", e);
+            FirebaseCrash.report(e);
+        }
     }
 
-    public String getNickName(DatabaseReference databaseReference, FirebaseUser firebaseUser) {
-        final String[] result = new String[1];
-        databaseReference.child("users")
-                .child(firebaseUser.getUid())
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        result[0] = dataSnapshot.getValue(User.class).getNickName();
-                    }
+    private void getNickName(DatabaseReference databaseReference, FirebaseUser firebaseUser) {
+        try {
+            databaseReference.child("users")
+                    .child(firebaseUser.getUid())
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            // Update the android UI
+                            updateUI(dataSnapshot.getValue(User.class).getNickName());
+                        }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        FirebaseCrash.log("OnCancelled Method invoked when accessing the getNickName Method");
-                        System.out.println("OnCancelled Method invoked when accessing the getNickName Method");
-                    }
-                });
-        return result[0];
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            logger.log(Level.SEVERE, "Database Error Occurred", databaseError.toException());
+                            FirebaseCrash.report(databaseError.toException());
+                        }
+                    });
+        } catch (Throwable e) {
+            logger.log(Level.SEVERE, "Unidentified Error Occurred", e);
+            FirebaseCrash.report(e);
+        }
     }
 
-    public int getNumberOfMushrooms(DatabaseReference databaseReference, FirebaseUser firebaseUser) {
-        final int[] result = new int[1];
-        databaseReference.child("users")
-                .child(firebaseUser.getUid())
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        result[0] = dataSnapshot.getValue(User.class).getNumberOfMushrooms();
-                    }
+    private void getNumberOfMushrooms(DatabaseReference databaseReference, FirebaseUser firebaseUser) {
+        try {
+            databaseReference.child("users")
+                    .child(firebaseUser.getUid())
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            // Update the android UI
+                            updateUI(dataSnapshot.getValue(User.class).getNumberOfMushrooms());
+                        }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        FirebaseCrash.log("OnCancelled Method invoked when accessing the getNumberOfMushrooms Method");
-                        System.out.println("OnCancelled Method invoked when accessing the getNumberOfMushrooms Method");
-                    }
-                });
-        return result[0];
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            logger.log(Level.SEVERE, "Database Error Occurred", databaseError.toException());
+                            FirebaseCrash.report(databaseError.toException());
+                        }
+                    });
+        } catch (Throwable e) {
+            logger.log(Level.SEVERE, "Unidentified Error Occurred", e);
+            FirebaseCrash.report(e);
+        }
     }
 
-    public int getNumberOfPoints(DatabaseReference databaseReference, FirebaseUser firebaseUser) {
-        final int[] result = new int[1];
-        databaseReference.child("users")
-                .child(firebaseUser.getUid())
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        result[0] = dataSnapshot.getValue(User.class).getNumberOfPoints();
-                    }
+    private void getNumberOfPoints(DatabaseReference databaseReference, FirebaseUser firebaseUser) {
+        try {
+            databaseReference.child("users")
+                    .child(firebaseUser.getUid())
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            // Update the android UI
+                            updateUI(dataSnapshot.getValue(User.class).getNumberOfPoints());
+                        }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        FirebaseCrash.log("OnCancelled Method invoked when accessing the getNumberOfPoints Method");
-                    }
-                });
-        return result[0];
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            logger.log(Level.SEVERE, "Database Error Occurred", databaseError.toException());
+                            FirebaseCrash.report(databaseError.toException());
+                        }
+                    });
+        } catch (Throwable e) {
+            logger.log(Level.SEVERE, "Unidentified Error Occurred", e);
+            FirebaseCrash.report(e);
+        }
+    }
+
+    private void updateUI(Object object) {
+        // DO NOTHING, VIRTUAL METHOD
+    }
+
+    private void updateDatabase(Object object) {
+        // DO NOTHING, VIRTUAL METHOD
     }
 
 }

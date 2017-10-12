@@ -9,6 +9,8 @@
         android:drawable="@drawable/forager_logo"
         android:gravity="center"
         android:width="250dp"
-        android:height="250dp" />
+        android:height="400dp"
+        android:scaleType="fitXY"
+        />
 
 </layer-list>

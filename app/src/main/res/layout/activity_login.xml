@@ -109,7 +109,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="67dp"
-        android:background="@color/interfaceButton"
+        android:background="@drawable/cbutton"
         android:text="Login"
         android:textColor="@color/colorSplash"
         android:textSize="25dp"

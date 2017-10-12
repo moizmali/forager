@@ -83,13 +83,13 @@
         app:layout_constraintRight_toRightOf="parent"
         tools:layout_constraintLeft_creator="1"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/ratingsGuideline"
         app:layout_constraintHorizontal_bias="0.502" />
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/guideline2"
+        android:id="@+id/ratingsGuideline"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.09823183"
         tools:layout_editor_absoluteY="65dp"

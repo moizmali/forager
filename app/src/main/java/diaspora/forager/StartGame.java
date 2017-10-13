@@ -265,10 +265,10 @@ public class StartGame extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                subtractFromDistanceRemaining(databaseReference, firebaseAuth.getCurrentUser());
-                addMushroomToDatabase(databaseReference, firebaseAuth.getCurrentUser());
-                addPointToDatabase(databaseReference, firebaseAuth.getCurrentUser());
-                //pushAnswer();
+                pushAnswer();
+//                subtractFromDistanceRemaining(databaseReference, firebaseAuth.getCurrentUser());
+//                addMushroomToDatabase(databaseReference, firebaseAuth.getCurrentUser());
+//                addPointToDatabase(databaseReference, firebaseAuth.getCurrentUser());
             }
         });
     }

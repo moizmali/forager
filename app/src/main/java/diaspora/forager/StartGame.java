@@ -264,11 +264,13 @@ public class StartGame extends AppCompatActivity {
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
+                        nextQuestion(); //TODO: Test this
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.e("Error: ", error.getMessage());
+                nextQuestion(); //TODO: Test this also
             }
         }) {
             @Override
@@ -281,20 +283,24 @@ public class StartGame extends AppCompatActivity {
 
         queue.add(req);
     }
+    
+    private void nextQuestion(){
+        question.setText("Loading question...");
+        int questionNo = Integer.parseInt(counter.getText().toString());
+        questionNo++;
+        if ((questionNo) > 10) {
+            counter.setText(Integer.toString(1));
+        } else {
+            counter.setText(Integer.toString(questionNo));
+        }
+        loadQuestion();
+    }
 
     private void setOnClick() {
         skipButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                question.setText("Loading question...");
-                int questionNo = Integer.parseInt(counter.getText().toString());
-                questionNo++;
-                if ((questionNo) > 10) {
-                    counter.setText(Integer.toString(1));
-                } else {
-                    counter.setText(Integer.toString(questionNo));
-                }
-                loadQuestion();
+                nextQuestion();
             }
         });
         submitButton.setOnClickListener(new View.OnClickListener() {

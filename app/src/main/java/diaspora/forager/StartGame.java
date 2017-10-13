@@ -285,6 +285,8 @@ public class StartGame extends AppCompatActivity {
     }
     
     private void nextQuestion(){
+        readable.setChecked(true);
+
         vToxic.setChecked(false);
         sToxic.setChecked(false);
         nToxic.setChecked(false);
@@ -301,7 +303,8 @@ public class StartGame extends AppCompatActivity {
         sIdentity.setChecked(false);
         nIdentity.setChecked(false);
 
-        comments = (EditText) findViewById(R.id.comments);
+        comments.setText("");
+        //comments = (EditText) findViewById(R.id.comments);
         question.setText("Loading question...");
         int questionNo = Integer.parseInt(counter.getText().toString());
         questionNo++;

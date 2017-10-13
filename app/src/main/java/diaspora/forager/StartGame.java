@@ -285,6 +285,23 @@ public class StartGame extends AppCompatActivity {
     }
     
     private void nextQuestion(){
+        vToxic.setChecked(false);
+        sToxic.setChecked(false);
+        nToxic.setChecked(false);
+        vInsult.setChecked(false);
+        sInsult.setChecked(false);
+        nInsult.setChecked(false);
+        vObscene.setChecked(false);
+        sObscene.setChecked(false);
+        nObscene.setChecked(false);
+        vThreat.setChecked(false);
+        sThreat.setChecked(false);
+        nThreat.setChecked(false);
+        vIdentity.setChecked(false);
+        sIdentity.setChecked(false);
+        nIdentity.setChecked(false);
+
+        comments = (EditText) findViewById(R.id.comments);
         question.setText("Loading question...");
         int questionNo = Integer.parseInt(counter.getText().toString());
         questionNo++;

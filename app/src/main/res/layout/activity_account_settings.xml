@@ -39,6 +39,7 @@
         android:backgroundTint="@color/interfaceButton"
         android:text="Logout"
         android:textSize="20dp"
+        android:background="@drawable/cbutton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -137,11 +138,11 @@
         android:textColor="@color/colorSplash"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.077"
         app:layout_constraintLeft_toRightOf="@+id/linearLayout"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/changeNickName"
-        app:layout_constraintVertical_bias="0.053" />
+        app:layout_constraintVertical_bias="0.08" />
 
     <TextView
         android:id="@+id/pointsValue"
@@ -150,12 +151,12 @@
         android:text="..."
         android:textColor="@color/colorSplash"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toRightOf="@+id/linearLayout"
-        app:layout_constraintRight_toLeftOf="@+id/linearLayout"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.644" />
+        app:layout_constraintTop_toBottomOf="@+id/mushroomsValue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.148"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.077" />
 
 
 </android.support.constraint.ConstraintLayout>

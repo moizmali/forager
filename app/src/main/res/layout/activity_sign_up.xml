@@ -26,63 +26,68 @@
         tools:layout_constraintTop_creator="1" />
 
     <TextView
+        android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="66dp"
+        android:layout_marginStart="66dp"
+        android:layout_marginTop="7dp"
         android:text="Email"
         android:textColor="@color/interfaceText"
         android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline4"
         tools:layout_conversion_absoluteHeight="24dp"
         tools:layout_conversion_absoluteWidth="50dp"
         tools:layout_conversion_absoluteX="0dp"
-        tools:layout_conversion_absoluteY="95dp"
-        app:layout_constraintTop_toTopOf="@+id/guideline4"
-        android:layout_marginTop="7dp"
-        android:layout_marginLeft="66dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:id="@+id/textView6"
-        android:layout_marginStart="66dp" />
+        tools:layout_conversion_absoluteY="95dp" />
 
     <EditText
         android:id="@+id/email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="213dp"
+        android:layout_height="34dp"
         android:layout_marginLeft="66dp"
+        android:layout_marginStart="66dp"
+        android:layout_marginTop="0dp"
         android:background="@color/common_google_signin_btn_text_dark_focused"
         android:hint="Enter Your Email Address"
         android:textColor="@color/interfaceText"
         android:textColorHint="@color/interfaceText"
         android:textSize="15sp"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
         tools:layout_conversion_absoluteHeight="42dp"
         tools:layout_conversion_absoluteWidth="320dp"
         tools:layout_conversion_absoluteX="0dp"
-        tools:layout_conversion_absoluteY="119dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        android:layout_marginStart="66dp" />
+        tools:layout_conversion_absoluteY="119dp" />
 
     <TextView
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="66dp"
+        android:layout_marginStart="66dp"
+        android:layout_marginTop="8dp"
         android:text="Password"
         android:textColor="@color/interfaceText"
         android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email"
         tools:layout_conversion_absoluteHeight="24dp"
         tools:layout_conversion_absoluteWidth="88dp"
         tools:layout_conversion_absoluteX="0dp"
-        tools:layout_conversion_absoluteY="171dp"
-        app:layout_constraintTop_toBottomOf="@+id/email"
-        android:layout_marginLeft="66dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:id="@+id/textView4"
-        android:layout_marginStart="66dp" />
+        tools:layout_conversion_absoluteY="171dp" />
 
     <EditText
         android:id="@+id/password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="211dp"
+        android:layout_height="35dp"
         android:layout_marginLeft="66dp"
-        android:layout_marginTop="2dp"
-        android:backgroundTint="@android:color/white"
+        android:layout_marginStart="66dp"
+        android:layout_marginTop="0dp"
+        android:background="@color/common_google_signin_btn_text_light_focused"
         android:hint="Enter Password"
         android:inputType="textPassword"
         android:textColor="@color/interfaceText"
@@ -93,32 +98,34 @@
         tools:layout_conversion_absoluteHeight="42dp"
         tools:layout_conversion_absoluteWidth="320dp"
         tools:layout_conversion_absoluteX="0dp"
-        tools:layout_conversion_absoluteY="195dp"
-        android:layout_marginStart="66dp" />
+        tools:layout_conversion_absoluteY="195dp" />
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="155dp"
-        android:layout_height="24dp"
+        android:layout_width="209dp"
+        android:layout_height="27dp"
         android:layout_marginLeft="66dp"
+        android:layout_marginStart="66dp"
         android:layout_marginTop="8dp"
         android:text="Retype Password"
         android:textColor="@color/interfaceText"
         android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password"
         tools:layout_conversion_absoluteHeight="24dp"
         tools:layout_conversion_absoluteWidth="155dp"
         tools:layout_conversion_absoluteX="0dp"
-        tools:layout_conversion_absoluteY="247dp"
-        android:layout_marginStart="66dp" />
+        tools:layout_conversion_absoluteY="247dp" />
 
     <EditText
         android:id="@+id/retypePassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="208dp"
+        android:layout_height="38dp"
         android:layout_marginLeft="66dp"
-        android:backgroundTint="@android:color/white"
+        android:layout_marginStart="66dp"
+        android:layout_marginTop="0dp"
+        android:background="@color/common_google_signin_btn_text_light_focused"
         android:hint="Re-enter Your Password"
         android:inputType="textPassword"
         android:textColor="@color/interfaceText"
@@ -129,8 +136,7 @@
         tools:layout_conversion_absoluteHeight="42dp"
         tools:layout_conversion_absoluteWidth="320dp"
         tools:layout_conversion_absoluteX="0dp"
-        tools:layout_conversion_absoluteY="271dp"
-        android:layout_marginStart="66dp" />
+        tools:layout_conversion_absoluteY="271dp" />
 
     <android.support.constraint.Guideline
         android:id="@+id/ratingsGuideline"

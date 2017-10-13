@@ -3,6 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#ff4081</color>
+    <color name="colorDarkGrey">#232528</color>
     <!-- TODO I think white is better for this -->
     <color name="colorSplash"><!--#4E4F56-->#FFFFFF</color>
     <color name="interfaceText">#01ff61</color>

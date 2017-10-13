@@ -16,8 +16,6 @@ import java.util.logging.Logger;
 
 public class CloudDatabaseHandler {
 
-    // TODO test all these methods
-
     private static final Logger logger = Logger.getLogger(CloudDatabaseHandler.class.getName());
 
     public CloudDatabaseHandler() {

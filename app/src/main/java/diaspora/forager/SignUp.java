@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,8 +26,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class SignUp extends AppCompatActivity {
-
-    private static final Logger logger =  Logger.getLogger(SignUp.class.getName());
 
     private long mLastClickTime = 0;
 
@@ -71,7 +70,6 @@ public class SignUp extends AppCompatActivity {
                     if (passwordStr.equals(retypePasswordStr)) {
                         if (passwordStr.length() >= 6) {
                             new AlertDialog.Builder(SignUp.this).setTitle("Terms of Service")
-                                    // TODO add this in the strings and access with R.strings.termsAndConditions
                                     .setMessage(R.string.termsOfService)
                                     .setNegativeButton("Close", new DialogInterface.OnClickListener() {
                                         @Override
@@ -154,6 +152,7 @@ public class SignUp extends AppCompatActivity {
                                     })
                                     .show();
                             // TODO bug, this can happen if the user enters an invalid email address as well
+                            Log.e("Account Exists", "User attempting to create an account that already exists");
                             FirebaseCrash.log("User attempting to create an account that already exists");
                         }
                     }
@@ -161,13 +160,12 @@ public class SignUp extends AppCompatActivity {
     }
 
     public void writeNewUserToDatabase(DatabaseReference databaseReference, FirebaseUser firebaseUser) {
-        // TODO if google sign in, check whether user is a new one or not
         try {
             User user = new User(firebaseUser.getEmail(), 0, 0);
             databaseReference.child("users")
                     .child(firebaseUser.getUid()).setValue(user);
         } catch (Throwable e) {
-            logger.log(Level.SEVERE, "Unidentified Exception Occurred", e);
+            Log.e("Unidentified Exception", e.toString());
             FirebaseCrash.report(e);
         }
     }

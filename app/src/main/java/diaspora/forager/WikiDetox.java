@@ -64,7 +64,6 @@ public class WikiDetox {
                 result = new JSONArray(stringBuffer.toString());
             }
         } catch (MalformedURLException e) {
-            // TODO handle exceptions properly
             logger.log(Level.SEVERE, "MalformedURLException", e);
             FirebaseCrash.report(e);
         } catch (IOException e) {

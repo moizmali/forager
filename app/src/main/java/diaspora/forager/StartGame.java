@@ -16,6 +16,8 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.firebase.auth.FirebaseAuth;
@@ -52,7 +54,7 @@ public class StartGame extends AppCompatActivity {
     private int questionCurrent = 0;
     private String uid;
     private String questionId;
-    private static final String KEY = "wp_x2000_test";
+    private static final String KEY = "wp_v2_x2000_2piyq";
     private static final String SERVER = "https://crowd9api-dot-wikidetox.appspot.com/client_jobs/";
     private static final Logger LOGGER = Logger.getLogger(StartGame.class.getName());
 
@@ -253,13 +255,13 @@ public class StartGame extends AppCompatActivity {
         Map<String, String> params = new HashMap<String, String>();
         params.put("answer", new JSONObject(buildParams()).toString());
 
-        JsonObjectRequest req = new JsonObjectRequest(URL, new JSONObject(params),
+        JsonObjectRequest req = new JsonObjectRequest(url, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            VolleyLog.v("Response: ", response.toString());
-                        } catch (JSONException e) {
+                            Log.e("Response: ", response.toString());
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }

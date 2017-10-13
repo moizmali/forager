@@ -149,9 +149,9 @@ public class StartGame extends AppCompatActivity {
     private Map buildParams() {
         Map<String, String> params = new HashMap<String, String>();
         if (readable.isChecked()) {
-            params.put("readableAndInEnglish", "yes");
+            params.put("readableAndInEnglish", "Yes");
         } else {
-            params.put("readableAndInEnglish", "no");
+            params.put("readableAndInEnglish", "No");
         }
         if (vToxic.isChecked()) {
             params.put("toxic", "Very");
@@ -269,7 +269,7 @@ public class StartGame extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                VolleyLog.e("Error: ", error.getMessage());
+                Log.e("Error: ", error.getMessage());
                 nextQuestion(); //TODO: Test this also
             }
         }) {
@@ -307,9 +307,9 @@ public class StartGame extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 pushAnswer();
-//                subtractFromDistanceRemaining(databaseReference, firebaseAuth.getCurrentUser());
-//                addMushroomToDatabase(databaseReference, firebaseAuth.getCurrentUser());
-//                addPointToDatabase(databaseReference, firebaseAuth.getCurrentUser());
+                subtractFromDistanceRemaining(databaseReference, firebaseAuth.getCurrentUser());
+                addMushroomToDatabase(databaseReference, firebaseAuth.getCurrentUser());
+                addPointToDatabase(databaseReference, firebaseAuth.getCurrentUser());
             }
         });
     }

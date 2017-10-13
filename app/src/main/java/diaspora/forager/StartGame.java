@@ -204,47 +204,80 @@ public class StartGame extends AppCompatActivity {
         return params;
     }
 
+    // private void pushAnswer() {
+    //     String url = SERVER + KEY + "/questions/" + questionId + "/answers/" + uid;
+
+    //     StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+    //             new Response.Listener<String>() {
+    //                 @Override
+    //                 public void onResponse(String response) {
+    //                     // response
+    //                     loadQuestion();
+    //                 }
+    //             },
+    //             new Response.ErrorListener() {
+    //                 @Override
+    //                 public void onErrorResponse(VolleyError error) {
+    //                     // error
+
+    //                     Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
+    //                 }
+    //             }
+    //     ) {
+    //         @Override
+    //         public Map<String, String> getParams() {
+    //             Map<String, String> params = new HashMap<String, String>();
+
+    //             params.put("answer", new JSONObject(buildParams()).toString());
+    //             Log.e("TheDiaspora", params.get("answer"));
+    //             Log.e("TheDiaspora", new JSONObject(params).toString());
+    //             return params;
+    //         }
+
+    //         @Override
+    //         public Map<String, String> getHeaders() throws AuthFailureError {
+    //             Map<String, String> headers = new HashMap<String, String>();
+    //             headers.put("Content-Type", "application/json");
+
+    //             Log.e("TheDiaspora", new JSONObject(headers).toString());
+
+    //             return headers;
+    //         }
+    //     };
+    //     queue.add(postRequest);
+    // }
+
     private void pushAnswer() {
         String url = SERVER + KEY + "/questions/" + questionId + "/answers/" + uid;
 
-        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // response
-                        loadQuestion();
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // error
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("answer", new JSONObject(buildParams()).toString());
 
-                        Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
+        JsonObjectRequest req = new JsonObjectRequest(URL, new JSONObject(params),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            VolleyLog.v("Response: ", response.toString());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
-                }
-        ) {
+                }, new Response.ErrorListener() {
             @Override
-            public Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-
-                params.put("answer", new JSONObject(buildParams()).toString());
-                Log.e("TheDiaspora", params.get("answer"));
-                Log.e("TheDiaspora", new JSONObject(params).toString());
-                return params;
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.e("Error: ", error.getMessage());
             }
-
+        }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<String, String>();
+                HashMap<String, String> headers = new HashMap<String, String>();
                 headers.put("Content-Type", "application/json");
-
-                Log.e("TheDiaspora", new JSONObject(headers).toString());
-
                 return headers;
             }
         };
-        queue.add(postRequest);
+
+        queue.add(req);
     }
 
     private void setOnClick() {

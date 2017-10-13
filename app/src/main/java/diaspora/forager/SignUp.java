@@ -70,9 +70,9 @@ public class SignUp extends AppCompatActivity {
                 if (!emailStr.isEmpty() && !passwordStr.isEmpty() && !retypePasswordStr.isEmpty()) {
                     if (passwordStr.equals(retypePasswordStr)) {
                         if (passwordStr.length() >= 6) {
-                            new AlertDialog.Builder(SignUp.this).setTitle("Terms & Conditions")
+                            new AlertDialog.Builder(SignUp.this).setTitle("Terms of Service")
                                     // TODO add this in the strings and access with R.strings.termsAndConditions
-                                    .setMessage("These are the terms and conditions")
+                                    .setMessage(R.string.termsOfService)
                                     .setNegativeButton("Close", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {

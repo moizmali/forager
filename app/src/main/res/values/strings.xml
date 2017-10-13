@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Forager</string>
+    <string name="termsOfService">
+        By clicking on the "I Accept" button you are agreeing to the following terms,
+        1) I have read and signed the participant agreement,
+        2) I am participating this project voluntarily,
+        3) I understand that I am free to stop at any time.
+    </string>
 </resources>

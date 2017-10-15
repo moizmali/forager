@@ -1,5 +1,6 @@
 package diaspora.forager;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -49,7 +50,6 @@ public class StartGame extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private FirebaseAuth firebaseAuth;
 
-    private int questionCurrent = 0;
     private String uid;
     private String questionId;
 
@@ -72,7 +72,6 @@ public class StartGame extends AppCompatActivity {
     private CheckBox readable;
     private EditText comments;
 
-
     private void setComponents() {
         question = (TextView) findViewById(R.id.question);
         counter = (TextView) findViewById(R.id.counter);
@@ -89,21 +88,21 @@ public class StartGame extends AppCompatActivity {
 
         readable = (CheckBox) findViewById(R.id.legibleCheckBox);
 
-        vToxic = (RadioButton) findViewById(R.id.veryToxic);
-        sToxic = (RadioButton) findViewById(R.id.somewhatToxic);
-        nToxic = (RadioButton) findViewById(R.id.notToxic);
-        vInsult = (RadioButton) findViewById(R.id.veryInsult);
-        sInsult = (RadioButton) findViewById(R.id.somewhatInsult);
-        nInsult = (RadioButton) findViewById(R.id.notInsult);
-        vObscene = (RadioButton) findViewById(R.id.veryObscene);
-        sObscene = (RadioButton) findViewById(R.id.somewhatObscene);
-        nObscene = (RadioButton) findViewById(R.id.notObscene);
-        vThreat = (RadioButton) findViewById(R.id.veryThreat);
-        sThreat = (RadioButton) findViewById(R.id.somewhatThreat);
-        nThreat = (RadioButton) findViewById(R.id.notThreat);
-        vIdentity = (RadioButton) findViewById(R.id.veryHate);
-        sIdentity = (RadioButton) findViewById(R.id.somewhatHate);
-        nIdentity = (RadioButton) findViewById(R.id.notHate);
+        vToxic = findViewById(R.id.veryToxic);
+        sToxic = findViewById(R.id.somewhatToxic);
+        nToxic = findViewById(R.id.notToxic);
+        vInsult = findViewById(R.id.veryInsult);
+        sInsult = findViewById(R.id.somewhatInsult);
+        nInsult = findViewById(R.id.notInsult);
+        vObscene = findViewById(R.id.veryObscene);
+        sObscene = findViewById(R.id.somewhatObscene);
+        nObscene = findViewById(R.id.notObscene);
+        vThreat = findViewById(R.id.veryThreat);
+        sThreat = findViewById(R.id.somewhatThreat);
+        nThreat = findViewById(R.id.notThreat);
+        vIdentity = findViewById(R.id.veryHate);
+        sIdentity = findViewById(R.id.somewhatHate);
+        nIdentity = findViewById(R.id.notHate);
 
         comments = (EditText) findViewById(R.id.comments);
     }
@@ -145,6 +144,11 @@ public class StartGame extends AppCompatActivity {
     }
 
     private Map buildParams() {
+        boolean toxic = false;
+        boolean obscene = false;
+        boolean insult = false;
+        boolean identity = false;
+        boolean threat = false;
         Map<String, String> params = new HashMap<String, String>();
         if (readable.isChecked()) {
             params.put("readableAndInEnglish", "Yes");
@@ -152,54 +156,81 @@ public class StartGame extends AppCompatActivity {
             params.put("readableAndInEnglish", "No");
         }
         if (vToxic.isChecked()) {
+            toxic = true;
             params.put("toxic", "Very");
         }
         if (sToxic.isChecked()) {
+            toxic = true;
             params.put("toxic", "Somewhat");
         }
         if (nToxic.isChecked()) {
+            toxic = true;
             params.put("toxic", "NotAtAll");
         }
         if (vObscene.isChecked()) {
+            obscene = true;
             params.put("obscene", "Very");
         }
         if (sObscene.isChecked()) {
+            obscene = true;
             params.put("obscene", "Somewhat");
         }
         if (nObscene.isChecked()) {
+            obscene = true;
             params.put("obscene", "NotAtAll");
         }
         if (vIdentity.isChecked()) {
+            identity = true;
             params.put("identityHate", "Very");
         }
         if (sIdentity.isChecked()) {
+            identity = true;
             params.put("identityHate", "Somewhat");
         }
         if (nIdentity.isChecked()) {
+            identity = true;
             params.put("identityHate", "NotAtAll");
         }
         if (vInsult.isChecked()) {
+            insult = true;
             params.put("insult", "Very");
         }
         if (sInsult.isChecked()) {
+            insult = true;
             params.put("insult", "Somewhat");
         }
         if (nInsult.isChecked()) {
+            insult = true;
             params.put("insult", "NotAtAll");
         }
         if (vThreat.isChecked()) {
+            threat = true;
             params.put("threat", "Very");
         }
         if (sThreat.isChecked()) {
+            threat = true;
             params.put("threat", "Somewhat");
         }
         if (nThreat.isChecked()) {
+            threat = true;
             params.put("threat", "NotAtAll");
         }
         if ((comments.getText() != null) || (!comments.getText().equals(""))) {
             params.put("comments", comments.getText().toString());
         } else {
             params.put("comments", "");
+        }
+        if (!toxic || !obscene || !insult || !identity || !threat) {
+            new android.support.v7.app.AlertDialog.Builder(StartGame.this).setTitle("Missing details")
+                    .setMessage("You've missed some critical fields. Please be more careful in future.")
+                    .setCancelable(true)
+                    .setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Do nothing
+                        }
+                    })
+                    .show();
         }
         return params;
     }
@@ -208,8 +239,8 @@ public class StartGame extends AppCompatActivity {
         String url = SERVER + KEY + "/questions/" + questionId + "/answers/" + uid;
 
         Map<String, String> params = new HashMap<String, String>();
-        params.put("answer", new JSONObject(buildParams()).toString());
 
+        params.put("answer", new JSONObject(buildParams()).toString());
         JsonObjectRequest req = new JsonObjectRequest(url, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -279,10 +310,12 @@ public class StartGame extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                submitButton.setEnabled(false);
                 pushAnswer();
                 subtractFromDistanceRemaining(databaseReference, firebaseAuth.getCurrentUser());
                 addMushroomToDatabase(databaseReference, firebaseAuth.getCurrentUser());
                 addPointToDatabase(databaseReference, firebaseAuth.getCurrentUser());
+                submitButton.setEnabled(true);
             }
         });
     }

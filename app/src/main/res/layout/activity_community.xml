@@ -8,10 +8,13 @@
     tools:context="diaspora.forager.Community">
 
     <TextView
+        android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         android:text="Community"
         android:textColor="@color/interfaceText"
         android:textSize="30dp"
@@ -21,10 +24,7 @@
         tools:layout_conversion_absoluteHeight="35dp"
         tools:layout_conversion_absoluteWidth="156dp"
         tools:layout_conversion_absoluteX="20dp"
-        tools:layout_conversion_absoluteY="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:id="@+id/textView13" />
+        tools:layout_conversion_absoluteY="0dp" />
 
     <android.support.constraint.Guideline
         android:id="@+id/ratingsGuideline"
@@ -40,8 +40,8 @@
         android:layout_width="90dp"
         android:layout_height="40dp"
         android:text="Your Tribe :"
-        android:textSize="16dp"
         android:textColor="@color/colorAccent"
+        android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.296"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -53,13 +53,13 @@
         android:id="@+id/tribeName"
         android:layout_width="145dp"
         android:layout_height="46dp"
-        android:text="My Tribe"
+        android:text="TBC"
+        android:textColor="@color/interfaceText"
         android:textSize="22dp"
-        android:textColor="@color/colorSplash"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/textView8"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@+id/textView8"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.401" />
 
@@ -67,14 +67,14 @@
         android:id="@+id/textView16"
         android:layout_width="233dp"
         android:layout_height="64dp"
-        android:textColor="@color/colorAccent"
         android:text="Distance Remaining"
-        android:textStyle="bold"
+        android:textColor="@color/colorAccent"
         android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8"
         app:layout_constraintVertical_bias="0.173" />
 
@@ -83,12 +83,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="..."
-        android:textSize="38dp"
         android:textColor="@color/interfaceText"
+        android:textSize="38dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.249"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.249"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView16"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -97,13 +97,13 @@
         android:layout_width="103dp"
         android:layout_height="65dp"
         android:text="Quests"
-        android:textStyle="bold"
-        android:textSize="30dp"
         android:textColor="@color/interfaceText"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/distanceRemaining"
-        app:layout_constraintHorizontal_bias="0.275"
+        android:textSize="30dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.275"
+        app:layout_constraintLeft_toRightOf="@+id/distanceRemaining"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView16"
         app:layout_constraintVertical_bias="0.05" />
 

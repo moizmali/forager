@@ -24,7 +24,6 @@ public class Login extends AppCompatActivity {
 
     private static final String TAG = "Login";
 
-    // TODO Get rid of this and make the button unclickable.
     private long lastClickTime = 0;
 
     private FirebaseAuth firebaseAuth;

@@ -26,7 +26,6 @@ public class SignUp extends AppCompatActivity {
 
     private static final String TAG = "SignUp";
 
-    // TODO Get rid of this and make the button unclickable.
     private long mLastClickTime = 0;
 
     private FirebaseAuth firebaseAuth;
@@ -56,7 +55,7 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Does not let the user click the sign in button multiple times
-                // TODO get rid of this and add a loading section
+                // TODO Add a loading section for this, Login, Account Information & Community section as well.
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 3000) {
                     return;
                 }

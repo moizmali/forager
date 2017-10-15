@@ -9,14 +9,12 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -54,7 +52,7 @@ public class StartGame extends AppCompatActivity {
     private int questionCurrent = 0;
     private String uid;
     private String questionId;
-    private static final String KEY = "wp_v2_x2000_2piyq";
+    private static final String KEY = "wp_v2_x2000_test";
     private static final String SERVER = "https://crowd9api-dot-wikidetox.appspot.com/client_jobs/";
     private static final Logger LOGGER = Logger.getLogger(StartGame.class.getName());
 

@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/rating_screen_demo"
-    tools:context="diaspora.forager.StartGame">
+    tools:context="diaspora.forager.StartGame"
+    android:focusableInTouchMode="true">
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"

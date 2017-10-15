@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent">
 
-    <item android:drawable="@color/colorDarkGrey" />
+    <item android:drawable="@color/colorSplash" />
 
     <item
         android:drawable="@drawable/forager_logo"

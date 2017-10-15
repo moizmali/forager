@@ -21,14 +21,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 public class AccountSettings extends AppCompatActivity {
 
-    private static final Logger logger = Logger.getLogger(AccountSettings.class.getName());
+    private static final String TAG = "AccountSettings";
 
     private DatabaseReference databaseReference;
     private FirebaseAuth firebaseAuth;
@@ -92,7 +87,8 @@ public class AccountSettings extends AppCompatActivity {
                                     startActivity(intent);
                                     finish();
                                 } else {
-                                    FirebaseCrash.report(new Exception("Signed out user, trying to sign out again"));
+                                    Log.e(TAG, "Attempting to logout when user not signed in");
+                                    FirebaseCrash.report(new Exception("Attempting to logout when user not signed in"));
                                     Toast.makeText(AccountSettings.this, "Logout Attempt Failed", Toast.LENGTH_LONG).show();
                                 }
                             }
@@ -115,26 +111,21 @@ public class AccountSettings extends AppCompatActivity {
     }
 
     private void setNickNameToUI(DatabaseReference databaseReference, FirebaseUser firebaseUser) {
-        try {
-            databaseReference.child("users")
-                    .child(firebaseUser.getUid())
-                    .addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            // Update the android UI
-                            setNickNameToUI(dataSnapshot.getValue(User.class).getNickName());
-                        }
+        databaseReference.child("users")
+                .child(firebaseUser.getUid())
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        // Update the android UI
+                        setNickNameToUI(dataSnapshot.getValue(User.class).getNickName());
+                    }
 
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-                            Log.e("DatabaseError", databaseError.toString());
-                            FirebaseCrash.report(databaseError.toException());
-                        }
-                    });
-        } catch (Throwable e) {
-            logger.log(Level.SEVERE, "Unidentified Error Occurred", e);
-            FirebaseCrash.report(e);
-        }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Log.e(TAG, "Database Error Occurred", databaseError.toException());
+                        FirebaseCrash.report(databaseError.toException());
+                    }
+                });
     }
 
     private void setNickNameToUI(String nickName) {
@@ -142,27 +133,21 @@ public class AccountSettings extends AppCompatActivity {
     }
 
     private void setNumberOfMushroomsToUI(DatabaseReference databaseReference, FirebaseUser firebaseUser) {
-        try {
-            databaseReference.child("users")
-                    .child(firebaseUser.getUid())
-                    .addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            // Update the android UI
-                            setNumberOfMushroomsToUI(dataSnapshot.getValue(User.class).getNumberOfMushrooms());
-                        }
+        databaseReference.child("users")
+                .child(firebaseUser.getUid())
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        // Update the android UI
+                        setNumberOfMushroomsToUI(dataSnapshot.getValue(User.class).getNumberOfMushrooms());
+                    }
 
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-                            Log.e("DatabaseError", databaseError.toString());
-                            logger.log(Level.SEVERE, "Database Error Occurred", databaseError.toException());
-                            FirebaseCrash.report(databaseError.toException());
-                        }
-                    });
-        } catch (Throwable e) {
-            logger.log(Level.SEVERE, "Unidentified Error Occurred", e);
-            FirebaseCrash.report(e);
-        }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Log.e(TAG, "Database Error Occurred", databaseError.toException());
+                        FirebaseCrash.report(databaseError.toException());
+                    }
+                });
     }
 
     private void setNumberOfMushroomsToUI(int numberOfMushrooms) {
@@ -170,27 +155,21 @@ public class AccountSettings extends AppCompatActivity {
     }
 
     private void setNumberOfPointsToUI(DatabaseReference databaseReference, FirebaseUser firebaseUser) {
-        try {
-            databaseReference.child("users")
-                    .child(firebaseUser.getUid())
-                    .addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            // Update the android UI
-                            setNumberOfPointsToUI(dataSnapshot.getValue(User.class).getNumberOfPoints());
-                        }
+        databaseReference.child("users")
+                .child(firebaseUser.getUid())
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        // Update the android UI
+                        setNumberOfPointsToUI(dataSnapshot.getValue(User.class).getNumberOfPoints());
+                    }
 
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-                            Log.e("DatabaseError", databaseError.toString());
-                            logger.log(Level.SEVERE, "Database Error Occurred", databaseError.toException());
-                            FirebaseCrash.report(databaseError.toException());
-                        }
-                    });
-        } catch (Throwable e) {
-            logger.log(Level.SEVERE, "Unidentified Error Occurred", e);
-            FirebaseCrash.report(e);
-        }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Log.e(TAG, "Database Error Occurred", databaseError.toException());
+                        FirebaseCrash.report(databaseError.toException());
+                    }
+                });
     }
 
     private void setNumberOfPointsToUI(int numberOfPoints) {
@@ -198,14 +177,9 @@ public class AccountSettings extends AppCompatActivity {
     }
 
     private void updateNickNameToDatabase(DatabaseReference databaseReference, FirebaseUser firebaseUser, String nickName) {
-        try {
-            databaseReference.child("users")
-                    .child(firebaseUser.getUid())
-                    .child("nickName").setValue(nickName);
-        } catch (Throwable e) {
-            logger.log(Level.SEVERE, "Unidentified Error Occurred", e);
-            FirebaseCrash.report(e);
-        }
+        databaseReference.child("users")
+                .child(firebaseUser.getUid())
+                .child("nickName").setValue(nickName);
     }
 
     @Override

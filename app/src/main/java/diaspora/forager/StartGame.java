@@ -33,12 +33,12 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class StartGame extends AppCompatActivity {
 
-    private static final Logger logger = Logger.getLogger(StartGame.class.getName());
+    private static final String TAG = "StartGame";
+    private static final String KEY = "wp_v2_x2000_test";
+    private static final String SERVER = "https://crowd9api-dot-wikidetox.appspot.com/client_jobs/";
 
     private TextView question;
     private TextView counter;
@@ -52,9 +52,6 @@ public class StartGame extends AppCompatActivity {
     private int questionCurrent = 0;
     private String uid;
     private String questionId;
-    private static final String KEY = "wp_v2_x2000_test";
-    private static final String SERVER = "https://crowd9api-dot-wikidetox.appspot.com/client_jobs/";
-    private static final Logger LOGGER = Logger.getLogger(StartGame.class.getName());
 
     private RadioButton vToxic;
     private RadioButton sToxic;
@@ -130,13 +127,16 @@ public class StartGame extends AppCompatActivity {
                             question.setText(questiontoRate);
                             questionId = questionObject.getString("question_id");
                         } catch (JSONException e) {
-                            e.printStackTrace();
+                            Log.e(TAG, "JSONException Occurred", e);
+                            FirebaseCrash.report(e);
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 question.setText("That didn't work!");
+                Log.e(TAG, "VolleyError Occurred", error);
+                FirebaseCrash.report(error);
             }
         });
 
@@ -214,20 +214,18 @@ public class StartGame extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        try {
-                            Log.e("Response: ", response.toString());
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+                        Log.i("Response", response.toString());
                         nextQuestion();
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("Error: ", error.getMessage());
-                nextQuestion();
-            }
-        }) {
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e(TAG, "VolleyError Occurred", error);
+                        FirebaseCrash.log("VolleyError Occurred:" + error.toString());
+                        nextQuestion();
+                    }
+                }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();
@@ -238,8 +236,8 @@ public class StartGame extends AppCompatActivity {
 
         queue.add(req);
     }
-    
-    private void nextQuestion(){
+
+    private void nextQuestion() {
         readable.setChecked(true);
 
         vToxic.setChecked(false);
@@ -271,7 +269,7 @@ public class StartGame extends AppCompatActivity {
         loadQuestion();
     }
 
-    private void setOnClick() {
+    private void setOnClickListeners() {
         skipButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -290,104 +288,74 @@ public class StartGame extends AppCompatActivity {
     }
 
     private void subtractFromDistanceRemaining(final DatabaseReference databaseReference, FirebaseUser firebaseUser) {
-        try {
-            databaseReference.child("global")
-                    .child("distanceRemaining")
-                    .addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            // Update the database
-                            subtractFromDistanceRemaining(databaseReference, (dataSnapshot.getValue(Long.class).intValue() - 1));
-                        }
+        databaseReference.child("global")
+                .child("distanceRemaining")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        // Update the database
+                        subtractFromDistanceRemaining(databaseReference, (dataSnapshot.getValue(Long.class).intValue() - 1));
+                    }
 
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-                            logger.log(Level.SEVERE, "Database Error Occurred", databaseError.toException());
-                            FirebaseCrash.report(databaseError.toException());
-                        }
-                    });
-        } catch (Throwable e) {
-            logger.log(Level.SEVERE, "Unidentified Error Occurred", e);
-            FirebaseCrash.report(e);
-        }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Log.e(TAG, "Database Error Occurred", databaseError.toException());
+                        FirebaseCrash.report(databaseError.toException());
+                    }
+                });
     }
 
     private void subtractFromDistanceRemaining(DatabaseReference databaseReference, int distanceRemaining) {
-        try {
-            databaseReference.child("global")
-                    .child("distanceRemaining").setValue(distanceRemaining);
-        } catch (Throwable e) {
-            logger.log(Level.SEVERE, "Unidentified Error Occurred", e);
-            FirebaseCrash.report(e);
-        }
+        databaseReference.child("global")
+                .child("distanceRemaining").setValue(distanceRemaining);
     }
 
     private void addMushroomToDatabase(final DatabaseReference databaseReference, final FirebaseUser firebaseUser) {
-        try {
-            databaseReference.child("users")
-                    .child(firebaseUser.getUid())
-                    .addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            // Update the cloud database
-                            addMushroomToDatabase(databaseReference, firebaseUser, (dataSnapshot.getValue(User.class).getNumberOfMushrooms() + 1));
-                        }
+        databaseReference.child("users")
+                .child(firebaseUser.getUid())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        // Update the cloud database
+                        addMushroomToDatabase(databaseReference, firebaseUser, (dataSnapshot.getValue(User.class).getNumberOfMushrooms() + 1));
+                    }
 
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-                            logger.log(Level.SEVERE, "Database Error Occurred", databaseError.toException());
-                            FirebaseCrash.report(databaseError.toException());
-                        }
-                    });
-        } catch (Throwable e) {
-            logger.log(Level.SEVERE, "Unidentified Error Occurred", e);
-            FirebaseCrash.report(e);
-        }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Log.e(TAG, "Database Error Occurred", databaseError.toException());
+                        FirebaseCrash.report(databaseError.toException());
+                    }
+                });
     }
 
     private void addMushroomToDatabase(DatabaseReference databaseReference, FirebaseUser firebaseUser, int numberOfMushrooms) {
-        try {
-            databaseReference.child("users")
-                    .child(firebaseUser.getUid())
-                    .child("numberOfMushrooms").setValue(numberOfMushrooms);
-        } catch (Throwable e) {
-            logger.log(Level.SEVERE, "Unidentified Error Occurred", e);
-            FirebaseCrash.report(e);
-        }
+        databaseReference.child("users")
+                .child(firebaseUser.getUid())
+                .child("numberOfMushrooms").setValue(numberOfMushrooms);
     }
 
     private void addPointToDatabase(final DatabaseReference databaseReference, final FirebaseUser firebaseUser) {
-        try {
-            databaseReference.child("users")
-                    .child(firebaseUser.getUid())
-                    .addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            // Update the cloud database
-                            addPointToDatabase(databaseReference, firebaseUser, (dataSnapshot.getValue(User.class).getNumberOfPoints() + 1));
-                        }
+        databaseReference.child("users")
+                .child(firebaseUser.getUid())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        // Update the cloud database
+                        addPointToDatabase(databaseReference, firebaseUser, (dataSnapshot.getValue(User.class).getNumberOfPoints() + 1));
+                    }
 
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-                            logger.log(Level.SEVERE, "Database Error Occurred", databaseError.toException());
-                            FirebaseCrash.report(databaseError.toException());
-                        }
-                    });
-        } catch (Throwable e) {
-            logger.log(Level.SEVERE, "Unidentified Error Occurred", e);
-            FirebaseCrash.report(e);
-        }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Log.e(TAG, "Database Error Occurred", databaseError.toException());
+                        FirebaseCrash.report(databaseError.toException());
+                    }
+                });
     }
 
     private void addPointToDatabase(DatabaseReference databaseReference, FirebaseUser firebaseUser, int numberOfPoints) {
-        try {
-            databaseReference.child("users")
-                    .child(firebaseUser.getUid())
-                    .child("numberOfPoints").setValue(numberOfPoints);
-        } catch (Throwable e) {
-            logger.log(Level.SEVERE, "Unidentified Error Occurred", e);
-            FirebaseCrash.report(e);
-        }
+        databaseReference.child("users")
+                .child(firebaseUser.getUid())
+                .child("numberOfPoints").setValue(numberOfPoints);
     }
 
     @Override
@@ -396,7 +364,7 @@ public class StartGame extends AppCompatActivity {
         setContentView(R.layout.activity_start_game);
 
         setComponents();
-        setOnClick();
+        setOnClickListeners();
         loadQuestion();
     }
 }

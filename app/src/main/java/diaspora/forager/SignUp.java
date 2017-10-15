@@ -22,11 +22,11 @@ import com.google.firebase.crash.FirebaseCrash;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 public class SignUp extends AppCompatActivity {
 
+    private static final String TAG = "SignUp";
+
+    // TODO Get rid of this and make the button unclickable.
     private long mLastClickTime = 0;
 
     private FirebaseAuth firebaseAuth;
@@ -142,8 +142,8 @@ public class SignUp extends AppCompatActivity {
                             startActivity(intent);
                             finish();
                         } else {
-                            new AlertDialog.Builder(SignUp.this).setTitle("Account Taken")
-                                    .setMessage("The following account already exists, please enter another email address")
+                            new AlertDialog.Builder(SignUp.this).setTitle("Account Invalid/Taken")
+                                    .setMessage("The following account is either invalid or already exists, please re-check your information")
                                     .setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
@@ -152,7 +152,7 @@ public class SignUp extends AppCompatActivity {
                                     })
                                     .show();
                             // TODO bug, this can happen if the user enters an invalid email address as well
-                            Log.e("Account Exists", "User attempting to create an account that already exists");
+                            Log.e(TAG, "User attempting to create an account that already exists");
                             FirebaseCrash.log("User attempting to create an account that already exists");
                         }
                     }

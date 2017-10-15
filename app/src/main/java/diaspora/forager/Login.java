@@ -7,6 +7,7 @@ import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,6 +22,9 @@ import com.google.firebase.crash.FirebaseCrash;
 
 public class Login extends AppCompatActivity {
 
+    private static final String TAG = "Login";
+
+    // TODO Get rid of this and make the button unclickable.
     private long lastClickTime = 0;
 
     private FirebaseAuth firebaseAuth;
@@ -78,6 +82,7 @@ public class Login extends AppCompatActivity {
                                     }
                                 });
                     } else {
+                        Log.e(TAG, "Attempt to login, when a user is already logged in");
                         Toast.makeText(Login.this, "A user is already logged in", Toast.LENGTH_LONG).show();
                         FirebaseCrash.report(new Exception("Attempt to login, when a user is already logged in"));
                     }

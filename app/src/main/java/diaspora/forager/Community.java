@@ -2,6 +2,7 @@ package diaspora.forager;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -13,12 +14,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 public class Community extends AppCompatActivity {
 
-    private static final Logger logger = Logger.getLogger(Community.class.getName());
+    private static final String TAG = "Community";
 
     private DatabaseReference databaseReference;
     private FirebaseAuth firebaseAuth;
@@ -39,26 +37,21 @@ public class Community extends AppCompatActivity {
     }
 
     private void setDistanceRemainingToUI(final DatabaseReference databaseReference, FirebaseUser firebaseUser) {
-        try {
-            databaseReference.child("global")
-                    .child("distanceRemaining")
-                    .addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            // Update the android UI
-                            setDistanceRemainingToUI(dataSnapshot.getValue(Long.class).intValue());
-                        }
+        databaseReference.child("global")
+                .child("distanceRemaining")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        // Update the android UI
+                        setDistanceRemainingToUI(dataSnapshot.getValue(Long.class).intValue());
+                    }
 
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-                            logger.log(Level.SEVERE, "Database Error Occurred", databaseError.toException());
-                            FirebaseCrash.report(databaseError.toException());
-                        }
-                    });
-        } catch (Throwable e) {
-            logger.log(Level.SEVERE, "Unidentified Error Occurred", e);
-            FirebaseCrash.report(e);
-        }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Log.e(TAG, "Database Error Occurred", databaseError.toException());
+                        FirebaseCrash.report(databaseError.toException());
+                    }
+                });
     }
 
     private void setDistanceRemainingToUI(int distanceRemaining) {

@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class SplashScreen extends AppCompatActivity {
 
     private boolean isNetworkAvailable() {
+        // TODO send a volley request
         ConnectivityManager connectivityManager =
                 (ConnectivityManager) getSystemService(SplashScreen.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();

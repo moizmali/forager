@@ -216,8 +216,6 @@ public class StartGame extends AppCompatActivity {
         }
         if ((comments.getText() != null) || (!comments.getText().equals(""))) {
             params.put("comments", comments.getText().toString());
-        } else {
-            params.put("comments", "");
         }
         if (!toxic || !obscene || !insult || !identity || !threat) {
             new android.support.v7.app.AlertDialog.Builder(StartGame.this).setTitle("Missing details")

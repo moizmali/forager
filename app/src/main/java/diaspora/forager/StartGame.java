@@ -120,7 +120,6 @@ public class StartGame extends AppCompatActivity {
                         try {
                             JSONArray responseObject = new JSONArray(response);
                             JSONObject questionObject = new JSONObject(responseObject.getString(questionNo));
-                            question.setText(questionObject.toString());
                             JSONObject revisionObject = new JSONObject(questionObject.getString("question"));
                             String questiontoRate = revisionObject.getString("revision_text");
                             question.setText(questiontoRate);
@@ -238,9 +237,9 @@ public class StartGame extends AppCompatActivity {
     private void pushAnswer() {
         String url = SERVER + KEY + "/questions/" + questionId + "/answers/" + uid;
 
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, JSONObject> params = new HashMap<String, JSONObject>();
 
-        params.put("answer", new JSONObject(buildParams()).toString());
+        params.put("answer", new JSONObject(buildParams()));
         JsonObjectRequest req = new JsonObjectRequest(url, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
                     @Override

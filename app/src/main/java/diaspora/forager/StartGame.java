@@ -2,6 +2,7 @@ package diaspora.forager;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -38,7 +39,7 @@ import java.util.Map;
 public class StartGame extends AppCompatActivity {
 
     private static final String TAG = "StartGame";
-    private static final String KEY = "wp_v2_x2000_test";
+    private static final String KEY = "wp_v2_x2000_2piyq";
     private static final String SERVER = "https://crowd9api-dot-wikidetox.appspot.com/client_jobs/";
 
     private TextView question;
@@ -53,21 +54,21 @@ public class StartGame extends AppCompatActivity {
     private String uid;
     private String questionId;
 
-    private RadioButton vToxic;
-    private RadioButton sToxic;
-    private RadioButton nToxic;
-    private RadioButton vInsult;
-    private RadioButton sInsult;
-    private RadioButton nInsult;
-    private RadioButton vObscene;
-    private RadioButton sObscene;
-    private RadioButton nObscene;
-    private RadioButton vThreat;
-    private RadioButton sThreat;
-    private RadioButton nThreat;
-    private RadioButton vIdentity;
-    private RadioButton sIdentity;
-    private RadioButton nIdentity;
+    private RadioButton veryToxic;
+    private RadioButton somewhatToxic;
+    private RadioButton notToxic;
+    private RadioButton veryInsult;
+    private RadioButton somewhatInsult;
+    private RadioButton notInsult;
+    private RadioButton veryObscene;
+    private RadioButton somewhatObscene;
+    private RadioButton notObscene;
+    private RadioButton veryThreat;
+    private RadioButton somewhatThreat;
+    private RadioButton notThreat;
+    private RadioButton veryIdentityHate;
+    private RadioButton somewhatIdentityHate;
+    private RadioButton notIdentityHate;
 
     private CheckBox readable;
     private EditText comments;
@@ -88,21 +89,21 @@ public class StartGame extends AppCompatActivity {
 
         readable = (CheckBox) findViewById(R.id.legibleCheckBox);
 
-        vToxic = findViewById(R.id.veryToxic);
-        sToxic = findViewById(R.id.somewhatToxic);
-        nToxic = findViewById(R.id.notToxic);
-        vInsult = findViewById(R.id.veryInsult);
-        sInsult = findViewById(R.id.somewhatInsult);
-        nInsult = findViewById(R.id.notInsult);
-        vObscene = findViewById(R.id.veryObscene);
-        sObscene = findViewById(R.id.somewhatObscene);
-        nObscene = findViewById(R.id.notObscene);
-        vThreat = findViewById(R.id.veryThreat);
-        sThreat = findViewById(R.id.somewhatThreat);
-        nThreat = findViewById(R.id.notThreat);
-        vIdentity = findViewById(R.id.veryHate);
-        sIdentity = findViewById(R.id.somewhatHate);
-        nIdentity = findViewById(R.id.notHate);
+        veryToxic = findViewById(R.id.veryToxic);
+        somewhatToxic = findViewById(R.id.somewhatToxic);
+        notToxic = findViewById(R.id.notToxic);
+        veryInsult = findViewById(R.id.veryInsult);
+        somewhatInsult = findViewById(R.id.somewhatInsult);
+        notInsult = findViewById(R.id.notInsult);
+        veryObscene = findViewById(R.id.veryObscene);
+        somewhatObscene = findViewById(R.id.somewhatObscene);
+        notObscene = findViewById(R.id.notObscene);
+        veryThreat = findViewById(R.id.veryThreat);
+        somewhatThreat = findViewById(R.id.somewhatThreat);
+        notThreat = findViewById(R.id.notThreat);
+        veryIdentityHate = findViewById(R.id.veryIdentityHate);
+        somewhatIdentityHate = findViewById(R.id.somewhatIdentityHate);
+        notIdentityHate = findViewById(R.id.notIdentityHate);
 
         comments = (EditText) findViewById(R.id.comments);
     }
@@ -143,92 +144,58 @@ public class StartGame extends AppCompatActivity {
     }
 
     private Map buildParams() {
-        boolean toxic = false;
-        boolean obscene = false;
-        boolean insult = false;
-        boolean identity = false;
-        boolean threat = false;
         Map<String, String> params = new HashMap<String, String>();
+
         if (readable.isChecked()) {
             params.put("readableAndInEnglish", "Yes");
         } else {
             params.put("readableAndInEnglish", "No");
         }
-        if (vToxic.isChecked()) {
-            toxic = true;
+
+        if (veryToxic.isChecked()) {
             params.put("toxic", "Very");
-        }
-        if (sToxic.isChecked()) {
-            toxic = true;
+        } else if (somewhatToxic.isChecked()) {
             params.put("toxic", "Somewhat");
-        }
-        if (nToxic.isChecked()) {
-            toxic = true;
+        } else if (notToxic.isChecked()) {
             params.put("toxic", "NotAtAll");
         }
-        if (vObscene.isChecked()) {
-            obscene = true;
-            params.put("obscene", "Very");
-        }
-        if (sObscene.isChecked()) {
-            obscene = true;
-            params.put("obscene", "Somewhat");
-        }
-        if (nObscene.isChecked()) {
-            obscene = true;
-            params.put("obscene", "NotAtAll");
-        }
-        if (vIdentity.isChecked()) {
-            identity = true;
-            params.put("identityHate", "Very");
-        }
-        if (sIdentity.isChecked()) {
-            identity = true;
-            params.put("identityHate", "Somewhat");
-        }
-        if (nIdentity.isChecked()) {
-            identity = true;
-            params.put("identityHate", "NotAtAll");
-        }
-        if (vInsult.isChecked()) {
-            insult = true;
+
+        if (veryInsult.isChecked()) {
             params.put("insult", "Very");
-        }
-        if (sInsult.isChecked()) {
-            insult = true;
+        } else if (somewhatInsult.isChecked()) {
             params.put("insult", "Somewhat");
-        }
-        if (nInsult.isChecked()) {
-            insult = true;
+        } else if (notInsult.isChecked()) {
             params.put("insult", "NotAtAll");
         }
-        if (vThreat.isChecked()) {
-            threat = true;
+
+        if (veryObscene.isChecked()) {
+            params.put("obscene", "Very");
+        } else if (somewhatObscene.isChecked()) {
+            params.put("obscene", "Somewhat");
+        } else if (notObscene.isChecked()) {
+            params.put("obscene", "NotAtAll");
+        }
+
+        if (veryThreat.isChecked()) {
             params.put("threat", "Very");
-        }
-        if (sThreat.isChecked()) {
-            threat = true;
+        } else if (somewhatThreat.isChecked()) {
             params.put("threat", "Somewhat");
-        }
-        if (nThreat.isChecked()) {
-            threat = true;
+        } else if (notThreat.isChecked()) {
             params.put("threat", "NotAtAll");
         }
-        if ((comments.getText() != null) || (!comments.getText().equals(""))) {
+
+        if (veryIdentityHate.isChecked()) {
+            params.put("identityHate", "Very");
+        } else if (somewhatIdentityHate.isChecked()) {
+            params.put("identityHate", "Somewhat");
+        } else if (notIdentityHate.isChecked()) {
+            params.put("identityHate", "NotAtAll");
+        }
+
+        if (!comments.getText().toString().equals("")) {
             params.put("comments", comments.getText().toString());
         }
-        if (!toxic || !obscene || !insult || !identity || !threat) {
-            new android.support.v7.app.AlertDialog.Builder(StartGame.this).setTitle("Missing details")
-                    .setMessage("You've missed some critical fields. Please be more careful in future.")
-                    .setCancelable(true)
-                    .setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            // Do nothing
-                        }
-                    })
-                    .show();
-        }
+
         return params;
     }
 
@@ -236,8 +203,10 @@ public class StartGame extends AppCompatActivity {
         String url = SERVER + KEY + "/questions/" + questionId + "/answers/" + uid;
 
         Map<String, JSONObject> params = new HashMap<String, JSONObject>();
-
-        params.put("answer", new JSONObject(buildParams()));
+        // TODO log the answer being added
+        JSONObject answer = new JSONObject(buildParams());
+        Log.i("Answer", answer.toString());
+        params.put("answer", answer);
         JsonObjectRequest req = new JsonObjectRequest(url, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -250,7 +219,7 @@ public class StartGame extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.e(TAG, "VolleyError Occurred", error);
-                        FirebaseCrash.log("VolleyError Occurred:" + error.toString());
+                        FirebaseCrash.report(error);
                         nextQuestion();
                     }
                 }) {
@@ -268,21 +237,21 @@ public class StartGame extends AppCompatActivity {
     private void nextQuestion() {
         readable.setChecked(true);
 
-        vToxic.setChecked(false);
-        sToxic.setChecked(false);
-        nToxic.setChecked(false);
-        vInsult.setChecked(false);
-        sInsult.setChecked(false);
-        nInsult.setChecked(false);
-        vObscene.setChecked(false);
-        sObscene.setChecked(false);
-        nObscene.setChecked(false);
-        vThreat.setChecked(false);
-        sThreat.setChecked(false);
-        nThreat.setChecked(false);
-        vIdentity.setChecked(false);
-        sIdentity.setChecked(false);
-        nIdentity.setChecked(false);
+        veryToxic.setChecked(false);
+        somewhatToxic.setChecked(false);
+        notToxic.setChecked(false);
+        veryInsult.setChecked(false);
+        somewhatInsult.setChecked(false);
+        notInsult.setChecked(false);
+        veryObscene.setChecked(false);
+        somewhatObscene.setChecked(false);
+        notObscene.setChecked(false);
+        veryThreat.setChecked(false);
+        somewhatThreat.setChecked(false);
+        notThreat.setChecked(false);
+        veryIdentityHate.setChecked(false);
+        somewhatIdentityHate.setChecked(false);
+        notIdentityHate.setChecked(false);
 
         comments.setText("");
         //comments = (EditText) findViewById(R.id.comments);
@@ -308,13 +277,35 @@ public class StartGame extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 submitButton.setEnabled(false);
-                pushAnswer();
-                subtractFromDistanceRemaining(databaseReference, firebaseAuth.getCurrentUser());
-                addMushroomToDatabase(databaseReference, firebaseAuth.getCurrentUser());
-                addPointToDatabase(databaseReference, firebaseAuth.getCurrentUser());
+                checkInputsAndSubmitAnswer();
                 submitButton.setEnabled(true);
             }
         });
+    }
+
+    private void checkInputsAndSubmitAnswer() {
+        boolean toxicIsChecked = (veryToxic.isChecked() || somewhatToxic.isChecked() || notToxic.isChecked());
+        boolean insultIsChecked = (veryInsult.isChecked() || somewhatInsult.isChecked() || notInsult.isChecked());
+        boolean obsceneIsChecked = (veryObscene.isChecked() || somewhatObscene.isChecked() || notObscene.isChecked());
+        boolean threatIsChecked = (veryThreat.isChecked() || somewhatThreat.isChecked() || notThreat.isChecked());
+        boolean identityHateIsChecked = (veryIdentityHate.isChecked() || somewhatIdentityHate.isChecked() || notIdentityHate.isChecked());
+
+        if (toxicIsChecked && insultIsChecked && obsceneIsChecked && threatIsChecked && identityHateIsChecked) {
+            pushAnswer();
+            subtractFromDistanceRemaining(databaseReference, firebaseAuth.getCurrentUser());
+            addMushroomToDatabase(databaseReference, firebaseAuth.getCurrentUser());
+            addPointToDatabase(databaseReference, firebaseAuth.getCurrentUser());
+        } else {
+            new AlertDialog.Builder(StartGame.this).setTitle("Answer Incomplete")
+                    .setMessage("You have missed one/more bullet points for your answer, please complete the answer before submitting")
+                    .setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            // DO NOTHING
+                        }
+                    })
+                    .show();
+        }
     }
 
     private void subtractFromDistanceRemaining(final DatabaseReference databaseReference, FirebaseUser firebaseUser) {

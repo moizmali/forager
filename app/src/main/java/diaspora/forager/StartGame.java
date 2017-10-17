@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -70,6 +71,12 @@ public class StartGame extends AppCompatActivity {
     private RadioButton somewhatIdentityHate;
     private RadioButton notIdentityHate;
 
+    private RadioGroup toxic;
+    private RadioGroup insult;
+    private RadioGroup obscene;
+    private RadioGroup threat;
+    private RadioGroup identityHate;
+
     private CheckBox readable;
     private EditText comments;
 
@@ -104,6 +111,12 @@ public class StartGame extends AppCompatActivity {
         veryIdentityHate = findViewById(R.id.veryIdentityHate);
         somewhatIdentityHate = findViewById(R.id.somewhatIdentityHate);
         notIdentityHate = findViewById(R.id.notIdentityHate);
+
+        toxic = findViewById(R.id.toxic);
+        insult = findViewById(R.id.insult);
+        obscene = findViewById(R.id.obscene);
+        threat = findViewById(R.id.threat);
+        identityHate = findViewById(R.id.hate);
 
         comments = (EditText) findViewById(R.id.comments);
     }
@@ -237,21 +250,11 @@ public class StartGame extends AppCompatActivity {
     private void nextQuestion() {
         readable.setChecked(true);
 
-        veryToxic.setChecked(false);
-        somewhatToxic.setChecked(false);
-        notToxic.setChecked(false);
-        veryInsult.setChecked(false);
-        somewhatInsult.setChecked(false);
-        notInsult.setChecked(false);
-        veryObscene.setChecked(false);
-        somewhatObscene.setChecked(false);
-        notObscene.setChecked(false);
-        veryThreat.setChecked(false);
-        somewhatThreat.setChecked(false);
-        notThreat.setChecked(false);
-        veryIdentityHate.setChecked(false);
-        somewhatIdentityHate.setChecked(false);
-        notIdentityHate.setChecked(false);
+        toxic.clearCheck();
+        obscene.clearCheck();
+        insult.clearCheck();
+        threat.clearCheck();
+        identityHate.clearCheck();
 
         comments.setText("");
         //comments = (EditText) findViewById(R.id.comments);

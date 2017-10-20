@@ -40,7 +40,7 @@ import java.util.Map;
 public class StartGame extends AppCompatActivity {
 
     private static final String TAG = "StartGame";
-    private static final String KEY = "wp_v2_x2000_2piyq";
+    private static final String KEY = "wp_v1_x10k_2piyq" /*Key used to for testing - wp_v2_x2000_2piyq*/;
     private static final String SERVER = "https://crowd9api-dot-wikidetox.appspot.com/client_jobs/";
 
     private TextView question;
@@ -216,7 +216,6 @@ public class StartGame extends AppCompatActivity {
         String url = SERVER + KEY + "/questions/" + questionId + "/answers/" + uid;
 
         Map<String, JSONObject> params = new HashMap<String, JSONObject>();
-        // TODO log the answer being added
         JSONObject answer = new JSONObject(buildParams());
         Log.i("Answer", answer.toString());
         params.put("answer", answer);

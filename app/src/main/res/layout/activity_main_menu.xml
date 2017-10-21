@@ -46,7 +46,7 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="212dp"
-        android:layout_height="357dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
@@ -54,11 +54,11 @@
         android:orientation="vertical"
         android:weightSum="1"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:layout_constraintVertical_bias="0.558">
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        app:layout_constraintVertical_bias="0.5">
 
         <Button
             android:id="@+id/startGame"
@@ -90,6 +90,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_weight="0.05"
             android:background="@drawable/cbutton"
             android:backgroundTint="@color/interfaceButton"
             android:text="Community"
@@ -99,8 +100,7 @@
             tools:layout_conversion_absoluteHeight="48dp"
             tools:layout_conversion_absoluteWidth="320dp"
             tools:layout_conversion_absoluteX="0dp"
-            tools:layout_conversion_absoluteY="331dp"
-            android:layout_weight="0.05" />
+            tools:layout_conversion_absoluteY="331dp" />
 
         <Button
             android:id="@+id/accountSettings"
@@ -111,6 +111,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_weight="0.06"
             android:background="@drawable/cbutton"
             android:backgroundTint="@color/interfaceButton"
             android:text="Account Settings"
@@ -120,8 +121,7 @@
             tools:layout_conversion_absoluteHeight="48dp"
             tools:layout_conversion_absoluteWidth="320dp"
             tools:layout_conversion_absoluteX="0dp"
-            tools:layout_conversion_absoluteY="331dp"
-            android:layout_weight="0.06" />
+            tools:layout_conversion_absoluteY="331dp" />
 
         <Button
             android:id="@+id/accessories"
@@ -168,6 +168,13 @@
             tools:layout_conversion_absoluteY="235dp" />
 
     </LinearLayout>
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3" />
 
 
 </android.support.constraint.ConstraintLayout>

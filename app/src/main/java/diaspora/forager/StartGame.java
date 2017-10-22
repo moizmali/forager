@@ -130,7 +130,6 @@ public class StartGame extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         int questionNo = Integer.parseInt(counter.getText().toString()) - 1;
-                        // Display the first 500 characters of the response string.
                         try {
                             JSONArray responseObject = new JSONArray(response);
                             JSONObject questionObject = new JSONObject(responseObject.getString(questionNo));
@@ -138,6 +137,7 @@ public class StartGame extends AppCompatActivity {
                             String questiontoRate = revisionObject.getString("revision_text");
                             question.setText(questiontoRate);
                             questionId = questionObject.getString("question_id");
+                            Log.i("Question", questionId);
                         } catch (JSONException e) {
                             Log.e(TAG, "JSONException Occurred", e);
                             FirebaseCrash.report(e);
@@ -207,6 +207,8 @@ public class StartGame extends AppCompatActivity {
 
         if (!comments.getText().toString().equals("")) {
             params.put("comments", comments.getText().toString());
+        } else {
+            params.put("comments", "No comment supplied.");
         }
 
         return params;
@@ -214,11 +216,13 @@ public class StartGame extends AppCompatActivity {
 
     private void pushAnswer() {
         String url = SERVER + KEY + "/questions/" + questionId + "/answers/" + uid;
+        Log.i("URL", url);
 
         Map<String, JSONObject> params = new HashMap<String, JSONObject>();
         JSONObject answer = new JSONObject(buildParams());
         Log.i("Answer", answer.toString());
         params.put("answer", answer);
+        Log.i("AnswerFull", params.toString());
         JsonObjectRequest req = new JsonObjectRequest(url, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
                     @Override

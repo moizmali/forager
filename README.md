@@ -38,7 +38,7 @@ If you're already logged in, this is the first screen you'll see, from where you
 ![Main menu screenshot](https://raw.githubusercontent.com/moizalicious/Forager/master/docs/screenshots/main_menu.png)
 
 #### Start Game
-![Game screenshot](https://raw.githubusercontent.com/moizalicious/Forager/master/docs/screenshots/main_menu.png)
+![Game screenshot](https://raw.githubusercontent.com/moizalicious/Forager/master/docs/screenshots/start_game.png)
 
 This is the main game activity. Your task here is to read the comment presented to you and rate it on the bases provided, explained in detail below:
 

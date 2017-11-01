@@ -53,7 +53,7 @@
         android:id="@+id/tribeName"
         android:layout_width="145dp"
         android:layout_height="46dp"
-        android:text="TBC"
+        android:text="Vira Tribe"
         android:textColor="@color/interfaceText"
         android:textSize="22dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -67,7 +67,8 @@
         android:id="@+id/textView16"
         android:layout_width="233dp"
         android:layout_height="64dp"
-        android:text="Distance Remaining"
+        android:gravity="center_vertical|center"
+        android:text="Longwalk Progress"
         android:textColor="@color/colorAccent"
         android:textSize="25dp"
         android:textStyle="bold"
@@ -86,17 +87,17 @@
         android:textColor="@color/interfaceText"
         android:textSize="38dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.249"
+        app:layout_constraintHorizontal_bias="0.248"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView16"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.110000014" />
 
     <TextView
         android:id="@+id/textView18"
         android:layout_width="103dp"
-        android:layout_height="65dp"
-        android:text="Quests"
+        android:layout_height="wrap_content"
+        android:text="paces remain."
         android:textColor="@color/interfaceText"
         android:textSize="30dp"
         android:textStyle="bold"
@@ -106,5 +107,22 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView16"
         app:layout_constraintVertical_bias="0.05" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="233dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical|center"
+        android:text="Onwards, braves. There is still much to do. - Clan Elder"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView18"
+        app:layout_constraintVertical_bias="0.050000012" />
 
 </android.support.constraint.ConstraintLayout>

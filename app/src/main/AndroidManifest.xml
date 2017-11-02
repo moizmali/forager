@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="diaspora.forager">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/forager_logo_512x512"
@@ -10,36 +12,43 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <uses-permission android:name="android.permission.INTERNET" />
-
         <activity
             android:name=".SplashScreen"
-            android:theme="@style/SplashScreenTheme"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Accessories"
+        <activity
+            android:name=".Accessories"
             android:screenOrientation="portrait" />
-        <activity android:name=".Community"
+        <activity
+            android:name=".Community"
             android:screenOrientation="portrait" />
-        <activity android:name=".Leaderboard"
+        <activity
+            android:name=".Leaderboard"
             android:screenOrientation="portrait" />
-        <activity android:name=".Login"
+        <activity
+            android:name=".Login"
             android:screenOrientation="portrait" />
         <activity
             android:name=".LoginSignUp"
             android:screenOrientation="portrait" />
-        <activity android:name=".MainMenu"
+        <activity
+            android:name=".MainMenu"
             android:screenOrientation="portrait" />
-        <activity android:name=".SignUp"
+        <activity
+            android:name=".SignUp"
             android:screenOrientation="portrait" />
-        <activity android:name=".StartGame"
+        <activity
+            android:name=".StartGame"
             android:screenOrientation="portrait" />
-        <activity android:name=".AccountSettings"
+        <activity
+            android:name=".AccountSettings"
             android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>
